@@ -4,14 +4,20 @@ import { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { LoginForm } from "./components/LoginForm";
 import SectionTitleNdeskComp from "@/components/custom/section-title-n-desc";
+import { getTranslations } from "next-intl/server";
 
 // META
-export const metadata: Metadata = {
-  title: "Login | Entre com a sua conta",
-};
+export async function generateMetadata() {
+  const t = await getTranslations("LOGIN_PAGE");
+
+  return {
+    title: `${t("page_title")} | ${t("page_description")}`,
+  };
+}
 
 // PÁGINA
 export default function LoginPage() {
+  // HOOKS
   const t = useTranslations("LOGIN_PAGE");
 
   return (

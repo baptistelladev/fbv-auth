@@ -3,6 +3,10 @@ import { Nunito, Baloo_2 } from "next/font/google";
 import { CustomLayout } from "./custom-layout";
 import "./globals.css";
 import { routing } from "@/i18n/routing";
+import { Toaster } from "@/components/ui/sonner";
+import { useLocale } from "next-intl";
+import { LANGUAGES } from "@/shared/mocks/languages";
+import { getLangAttr } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,10 +36,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = useLocale();
+
   return (
-    <html lang="pt-BR">
+    <html lang={getLangAttr(LANGUAGES, locale)}>
       <body className={`${nunito.variable} ${baloo2.variable}`}>
         <CustomLayout>{children}</CustomLayout>
+        <Toaster />
       </body>
     </html>
   );

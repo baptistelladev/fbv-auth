@@ -1,17 +1,31 @@
 {
   "LOGIN_PAGE": {
+    "page_title": "Iniciar sesión",
+    "page_description": "Conoce lo mejor de la región de la Baixada Santista",
     "section_title": "<b>Accede</b> a tu cuenta",
     "section_desc": "Ingresa tu información de acceso",
     "hasnt_account": "¿Aún no tienes una cuenta?",
     "register": "Regístrate",
     "login": "Iniciar sesión",
     "logging_in": "Iniciando sesión",
-    "forgot_password": "¿Olvidaste tu contraseña?"
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "input_email_placeholder": "usuario@ejemplo.com"
   },
   "GENERAL": {
     "show_password": "Mostrar contraseña",
     "hide_password": "Ocultar contraseña",
     "theme": "Tema",
-    "language": "Idioma"
+    "language": "Idioma",
+    "flag": "bandera",
+    "email": "correo electrónico",
+    "password": "contraseña"
+  },
+  "COMPONENTS": {
+    "sonner": {
+      "lang": {
+        "title": "",
+        "message": "Has cambiado el idioma a {language}"
+      }
+    }
   }
 }

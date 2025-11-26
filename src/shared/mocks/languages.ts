@@ -9,6 +9,9 @@ export const LANGUAGES: LanguageType[] = [
       es: "Portugués",
     },
     image: "pt.svg",
+    title: "Idioma",
+    messageChange: "Você alterou o idioma para",
+    langAttr: "pt-BR",
   },
   {
     value: "en",
@@ -18,6 +21,9 @@ export const LANGUAGES: LanguageType[] = [
       es: "Inglés",
     },
     image: "en.svg",
+    title: "Language",
+    messageChange: "You changed the language to",
+    langAttr: "en-US",
   },
   {
     value: "es",
@@ -27,5 +33,8 @@ export const LANGUAGES: LanguageType[] = [
       es: "Español",
     },
     image: "es.svg",
+    title: "Idioma",
+    messageChange: "Has cambiado el idioma a",
+    langAttr: "es-ES",
   },
 ];

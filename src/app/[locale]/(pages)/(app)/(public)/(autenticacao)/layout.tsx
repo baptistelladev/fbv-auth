@@ -2,6 +2,7 @@ import { AnfitrionLogoComp } from "@/components/custom/anfitrion-logo";
 import { CopyrightComp } from "@/components/custom/copyright";
 import { CurrentLanguageComp } from "@/components/custom/current-language";
 import { ModeToggle } from "@/components/custom/toggle-theme";
+import Link from "next/link";
 import { ViewTransition } from "react";
 
 type Props = {
@@ -15,12 +16,17 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <section className="authentication-layout-wrapper w-full flex flex-col-reverse md:flex-row h-auto md:h-screen md:overflow-hidden bg-linear-to-bt-effect">
       <div className="authentication-pages-wrapper flex flex-col px-6 pt-6 pb-6 md:pb-12 md:pr-0 h-svh md:h-full w-full md:w-[40%] md:min-w-[400px] bg-linear-to-bt-effect">
-        <header className="w-full flex justify-end gap-3 items-center">
+        <header className="w-full flex  items-center">
           <div className="flex-1">
-            <AnfitrionLogoComp classNames="text-2xl" />
+            <Link
+              href="/"
+              className="inline-block hover:opacity-50 transition-opacity duration-300"
+            >
+              <AnfitrionLogoComp classNames="text-2xl" />
+            </Link>
           </div>
 
-          <div className="flex items-center md:transform md:translate-x-1">
+          <div className="flex items-center justify-end gap-2">
             <CurrentLanguageComp />
             <ModeToggle />
           </div>

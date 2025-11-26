@@ -10,7 +10,7 @@ export const AnfitrionLogoComp = ({ classNames }: Props) => {
     <div>
       <p
         className={cn(
-          "text-neutral-700 dark:text-white font-baloo font-thin text-sm",
+          "text-neutral-700 dark:text-white font-baloo font-thin text-sm ",
           classNames
         )}
       >

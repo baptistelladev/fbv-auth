@@ -30,25 +30,25 @@ export function ModeToggle({ classNames }: Props) {
       <TooltipTrigger asChild>
         <Button
           title={tg("theme")}
-          variant="ghost"
+          variant="outline"
           size="icon"
           onClick={() => defineTheme()}
           className={cn(
-            "dark:text-white cursor-pointer bg-transparent hover:bg-transparent hover:opacity-50 transition-opacity duration-300",
+            "dark:text-neutral-white cursor-pointer hover:opacity-50 transition-opacity duration-300 rounded-full dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]",
             classNames
           )}
         >
           <Sun
-            className="h-[1.2rem] w-[1.2rem] scale-120 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
+            className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
             strokeWidth={1.5}
           />
           <Moon
-            className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-120 dark:rotate-0"
+            className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
             strokeWidth={1.5}
           />
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="bottom" sideOffset={-3}>
+      <TooltipContent side="bottom" sideOffset={5}>
         <p>{tg("theme")}</p>
       </TooltipContent>
     </Tooltip>

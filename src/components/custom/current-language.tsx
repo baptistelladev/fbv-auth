@@ -3,7 +3,7 @@
 import { cn, getFlag } from "@/lib/utils";
 import { LANGUAGES } from "@/shared/mocks/languages";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { Languages } from "lucide-react";
+import { Globe, Languages } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import {
@@ -14,9 +14,10 @@ import {
 } from "../ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-import { Locale } from "@/shared/types/language.type";
-import { useLocale } from "next-intl";
+import { LanguageType, Locale } from "@/shared/types/language.type";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 // INTERFACE
 type Props = {
@@ -24,18 +25,34 @@ type Props = {
 };
 
 export function CurrentLanguageComp({ classNames }: Props) {
+  // TRADUÇÃO
+  const tg = useTranslations("GENERAL");
+  const tc = useTranslations("COMPONENTS.sonner.lang");
+
   // HOOKS
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale() as Locale;
 
   // FUNÇÕES
-  function handleLangChange(lang_value: string) {
+  function handleLangChange(lang: LanguageType) {
     const pathChunks = pathname.split("/");
-    pathChunks[1] = lang_value;
+    pathChunks[1] = lang.value;
     const newPath = pathChunks.join("/");
+
     router.replace(newPath);
     router.refresh();
+
+    showToast(lang);
+  }
+
+  function showToast(lang: LanguageType): void {
+    toast.message(lang.title, {
+      description: `${lang.messageChange} ${lang.text[lang.value as Locale]}`,
+      icon: <Languages strokeWidth={1.5} className="size-4" />,
+      position: "top-center",
+      closeButton: true,
+    });
   }
 
   return (
@@ -45,20 +62,20 @@ export function CurrentLanguageComp({ classNames }: Props) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
                 className={cn(
-                  "dark:text-white cursor-pointer bg-transparent hover:bg-transparent transition-none scale-120 hover:opacity-50 transition-opacity duration-300",
+                  "dark:text-neutral-white cursor-pointer hover:opacity-50 transition-opacity duration-300 rounded-full dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700  dark:border-[0.5px]",
                   classNames
                 )}
               >
-                <Languages strokeWidth={1.5} />
+                <Globe strokeWidth={1.5} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]">
               {LANGUAGES.map((lang) => (
                 <DropdownMenuItem
-                  onClick={() => handleLangChange(lang.value)}
+                  onClick={() => handleLangChange(lang)}
                   key={lang.value}
                   className="flex items-center justify-start gap-2  dark:hover:bg-neutral-800"
                 >
@@ -72,8 +89,9 @@ export function CurrentLanguageComp({ classNames }: Props) {
                       <Image
                         title={lang.text[locale]}
                         src={getFlag(lang.value)}
-                        alt="bandeira"
+                        alt={tg("flag")}
                         width={17}
+                        height={11.16}
                       />
                     }
                   </DropdownMenuShortcut>
@@ -84,8 +102,8 @@ export function CurrentLanguageComp({ classNames }: Props) {
         </div>
       </TooltipTrigger>
 
-      <TooltipContent side="bottom" sideOffset={-3}>
-        <p>Idioma</p>
+      <TooltipContent side="bottom" sideOffset={5}>
+        <p>{tg("language")}</p>
       </TooltipContent>
     </Tooltip>
   );

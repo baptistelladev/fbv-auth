@@ -147,6 +147,21 @@
     @apply bg-background text-foreground/75;
   }
 
+  .disable-link {
+    @apply opacity-50 pointer-events-none;
+  }
+
+  a,
+  button,
+  [data-slot="button"],
+  [data-slot="dropdown-menu-trigger"] {
+    @apply focus-visible:outline-[3px] focus-visible:outline-dotted focus-visible:outline-green-anfitrion outline-offset-2;
+  }
+
+  .focus-anfitrion-effect:not(:has(button:focus-visible)) {
+    @apply focus-within:outline-[3px] focus-within:outline-dotted focus-within:outline-green-anfitrion outline-offset-2;
+  }
+
   .color-linear {
     background-image: linear-gradient(0.351turn, #769834 43.71%, #547d0e 58.8%);
     background-size: 100%;

@@ -8,4 +8,7 @@ export type LanguageType = {
     ["es"]: string;
   };
   image: string;
+  title: string;
+  messageChange: string;
+  langAttr: string;
 };
