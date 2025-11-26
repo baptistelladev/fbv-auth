@@ -1,24 +1,42 @@
-import { cn } from "@/lib/utils";
+"use client";
+
+import { cn, getFlag } from "@/lib/utils";
 import { LANGUAGES } from "@/shared/mocks/languages";
-import { Languages } from "lucide-react";
-import { Button } from "../ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
+import { Languages } from "lucide-react";
+import Image from "next/image";
+import { Button } from "../ui/button";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { Span } from "next/dist/trace";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+
+import { useLocale, useTranslations } from "next-intl";
+import { Locale } from "@/shared/types/language.type";
+import { usePathname, useRouter } from "next/navigation";
 
 export function CurrentLanguageComp({ classNames }: { classNames?: string }) {
+  function handleLangChange(lang_value: string) {
+    const segments = pathname.split("/");
+
+    // remove locale atual
+    segments[1] = lang_value;
+
+    const newPath = segments.join("/");
+
+    router.replace(newPath);
+
+    router.refresh();
+  }
+
+  const locale = useLocale() as Locale;
+
+  const pathname = usePathname();
+  const router = useRouter();
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -39,21 +57,24 @@ export function CurrentLanguageComp({ classNames }: { classNames?: string }) {
             <DropdownMenuContent className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]">
               {LANGUAGES.map((lang) => (
                 <DropdownMenuItem
+                  onClick={() => handleLangChange(lang.value)}
                   key={lang.value}
                   className="flex items-center justify-start gap-2  dark:hover:bg-neutral-800"
                 >
-                  {lang.value === "pt" && (
+                  {lang.value === locale && (
                     <span className="size-1.5 bg-green-anfitrion rounded-full"></span>
                   )}
 
-                  <p className="text-xs font-normal">{lang.text["pt"]}</p>
+                  <p className="text-xs font-normal">{lang.text[locale]}</p>
                   <DropdownMenuShortcut>
-                    <Image
-                      src={`/flags/${lang.image}`}
-                      alt="@shadcn"
-                      width={16}
-                      height={0}
-                    />
+                    {
+                      <Image
+                        title={lang.text[locale]}
+                        src={getFlag(lang.value)}
+                        alt="bandeira"
+                        width={17}
+                      />
+                    }
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>
               ))}

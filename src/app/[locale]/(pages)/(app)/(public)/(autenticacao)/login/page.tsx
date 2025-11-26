@@ -2,6 +2,7 @@ import { LogIn } from "lucide-react";
 import { Metadata } from "next";
 import { LoginForm } from "./components/LoginForm";
 import { IconFrameComp } from "@/components/custom/icon-frame";
+import { useFormatter, useTranslations } from "next-intl";
 
 // META TAGS
 export const metadata: Metadata = {
@@ -10,6 +11,12 @@ export const metadata: Metadata = {
 
 // PÁGINA
 export default function LoginPage() {
+  const t = useTranslations("LOGIN_PAGE");
+
+  const sectionTitle = t.rich("section_title", {
+    b: (chunks) => <b className="font-bold">{chunks}</b>,
+  });
+
   return (
     <section className="login-page-wrapper w-full">
       <div className="max-w-md m-auto flex items-center justify-center flex-col">
@@ -22,7 +29,7 @@ export default function LoginPage() {
 
         <div className="text-center mt-3">
           <h1 className="text-2xl md:text-3xl font-nunito text-neutral-700 dark:text-neutral-100 font-light">
-            <b className="font-bold">Acesse</b> sua conta
+            {sectionTitle}
           </h1>
           <p className="text-sm font-light text-muted-foreground">
             Insira suas informações de login.

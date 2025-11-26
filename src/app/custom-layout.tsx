@@ -1,12 +1,17 @@
-"use client";
-
 import { ThemeProvider } from "@/context/ThemeContext";
 import { AuthProvider, useAuth } from "../context/AuthContext";
+import { NextIntlClientProvider } from "next-intl";
 
-export const CustomLayout = ({ children }: { children: any }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const CustomLayout = ({ children }: Props) => {
   return (
     <ThemeProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <NextIntlClientProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </NextIntlClientProvider>
     </ThemeProvider>
   );
 };

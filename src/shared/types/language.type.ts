@@ -1,9 +1,11 @@
+export type Locale = "pt" | "en" | "es";
+
 export type LanguageType = {
   value: string;
   text: {
-    pt: string;
-    en: string;
-    es: string;
+    ["en"]: string;
+    ["pt"]: string;
+    ["es"]: string;
   };
   image: string;
 };

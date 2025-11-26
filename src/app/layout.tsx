@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Baloo_2 } from "next/font/google";
 import { CustomLayout } from "./custom-layout";
 import "./globals.css";
+import { routing } from "@/i18n/routing";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,10 @@ const baloo2 = Baloo_2({
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function RootLayout({
   children,
