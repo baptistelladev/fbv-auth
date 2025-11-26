@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils";
 
-export const AnfitrionLogoComp = ({ classNames }: { classNames?: string }) => {
+// INTERFACE
+type Props = {
+  classNames?: string;
+};
+
+export const AnfitrionLogoComp = ({ classNames }: Props) => {
   return (
     <div>
       <p

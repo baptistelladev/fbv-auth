@@ -2,14 +2,20 @@ import { cn } from "@/lib/utils";
 import { ANFITRION_CFG } from "@/shared/mocks/anfitrion.cfg";
 import { getYear } from "date-fns";
 
-export function CopyrightComp({ classNames }: { classNames?: string }) {
+// INTERFACE
+type Props = {
+  classNames?: string;
+};
+
+export function CopyrightComp({ classNames }: Props) {
+  // DATA
   const currenteDate = new Date();
   const currentYear = getYear(currenteDate);
 
+  // MOCK
   const foundationYear = ANFITRION_CFG.foundationYear;
   const projectName = ANFITRION_CFG.projectName;
 
-  /** COMPONENTE */
   return (
     <p
       className={cn(

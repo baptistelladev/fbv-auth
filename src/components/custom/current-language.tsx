@@ -14,28 +14,29 @@ import {
 } from "../ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/shared/types/language.type";
+import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
-export function CurrentLanguageComp({ classNames }: { classNames?: string }) {
-  function handleLangChange(lang_value: string) {
-    const segments = pathname.split("/");
+// INTERFACE
+type Props = {
+  classNames?: string;
+};
 
-    // remove locale atual
-    segments[1] = lang_value;
-
-    const newPath = segments.join("/");
-
-    router.replace(newPath);
-
-    router.refresh();
-  }
-
-  const locale = useLocale() as Locale;
-
+export function CurrentLanguageComp({ classNames }: Props) {
+  // HOOKS
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale() as Locale;
+
+  // FUNÇÕES
+  function handleLangChange(lang_value: string) {
+    const pathChunks = pathname.split("/");
+    pathChunks[1] = lang_value;
+    const newPath = pathChunks.join("/");
+    router.replace(newPath);
+    router.refresh();
+  }
 
   return (
     <Tooltip>

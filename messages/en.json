@@ -1,5 +1,17 @@
 {
   "LOGIN_PAGE": {
-    "section_title": "<b>Access</b> your account"
+    "section_title": "<b>Access</b> your account",
+    "section_desc": "Enter your login information",
+    "hasnt_account": "Don't have an account yet?",
+    "register": "Sign up",
+    "login": "Login",
+    "logging_in": "Logging in",
+    "forgot_password": "Forgot password?"
+  },
+  "GENERAL": {
+    "show_password": "Show password",
+    "hide_password": "Hide password",
+    "theme": "Theme",
+    "language": "Language"
   }
 }

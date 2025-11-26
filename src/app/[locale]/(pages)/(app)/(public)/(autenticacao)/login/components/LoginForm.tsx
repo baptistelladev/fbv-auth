@@ -17,18 +17,32 @@ import {
 import { Separator } from "@radix-ui/react-separator";
 import { AtSign, Eye, EyeClosed, LogIn, SquareAsterisk } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 
 export function LoginForm() {
+  // TRADUCAÇÃO
+  const t = useTranslations("LOGIN_PAGE");
+  const tg = useTranslations("GENERAL");
+
+  // STATES
   const [showPasswordField, setShowPasswordField] = useState(false);
   const [isLogging, setIsLogging] = useState(false);
 
+  /**
+   * @description Alternar visualização da senha.
+   * @author Felipe Baptistella
+   */
   function togglePassword() {
     let show = showPasswordField ? false : true;
     setShowPasswordField(show);
   }
 
+  /**
+   * @description Logar na aplicação.
+   * @author Felipe Baptistella
+   */
   function login() {
     setIsLogging(true);
     setShowPasswordField(false);
@@ -79,6 +93,11 @@ export function LoginForm() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <InputGroupButton
+                    title={
+                      showPasswordField
+                        ? tg("hide_password")
+                        : tg("show_password")
+                    }
                     disabled={isLogging}
                     className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300"
                     size="icon-sm"
@@ -92,7 +111,9 @@ export function LoginForm() {
                   </InputGroupButton>
                 </TooltipTrigger>
                 <TooltipContent sideOffset={-4}>
-                  {showPasswordField ? "Esconder senha" : "Mostrar senha"}
+                  {showPasswordField
+                    ? tg("hide_password")
+                    : tg("show_password")}
                 </TooltipContent>
               </Tooltip>
             </InputGroupAddon>
@@ -100,57 +121,51 @@ export function LoginForm() {
         </div>
       </div>
 
-      <div className="text-right">
-        <Button
-          title="Esqueceu sua senha?"
-          disabled={isLogging}
-          className="text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:text-green-dark-anfitrion cursor-pointer underline-offset-3"
-          variant="link"
-        >
-          <Link href="/esqueci-minha-senha">Esqueceu sua senha?</Link>
-        </Button>
-      </div>
+      <Button
+        title={t("forgot_password")}
+        disabled={isLogging}
+        className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:text-green-dark-anfitrion cursor-pointer underline-offset-3"
+        variant="link"
+      >
+        <Link href="/esqueci-minha-senha">{t("forgot_password")}</Link>
+      </Button>
 
-      <div className="w-full my-3">
-        <Button
-          title={isLogging ? "Entrando" : "Entrar"}
-          disabled={isLogging}
-          className="transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none"
-          asChild
-          onClick={() => login()}
+      <Button
+        asChild
+        title={isLogging ? t("logging_in") : t("login")}
+        disabled={isLogging}
+        className="my-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none"
+        onClick={() => login()}
+      >
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          className="w-full main-btn font-normal text-xs"
         >
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="w-full main-btn font-normal text-xs"
-          >
-            {isLogging ? (
-              <>
-                <Spinner /> Entrando
-              </>
-            ) : (
-              <>
-                Entrar <LogIn />
-              </>
-            )}
-          </motion.button>
-        </Button>
-      </div>
+          {isLogging ? (
+            <>
+              <Spinner /> {t("logging_in")}
+            </>
+          ) : (
+            <>
+              {t("login")} <LogIn />
+            </>
+          )}
+        </motion.button>
+      </Button>
 
-      <div className="text-center">
-        <Button
-          title="Ainda não possui uma conta? Cadastre-se"
-          disabled={isLogging}
-          className="text-xs m-0 p-0 font-normal group no-underline hover:no-underline hover:opacity-50 h-auto min-h-0 text-neutral-700 dark:text-neutral-100 transition-none"
-          variant="link"
-        >
-          <Link href="/criar-conta">
-            Ainda não possui uma conta?{" "}
-            <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer">
-              Cadastre-se
-            </span>
-          </Link>
-        </Button>
-      </div>
+      <Button
+        title={`${t("hasnt_account")} ${t("register")}`}
+        disabled={isLogging}
+        className="text-xs m-0 p-0 font-normal group no-underline hover:no-underline hover:opacity-50 h-auto min-h-0 text-neutral-700 dark:text-neutral-100 transition-none"
+        variant="link"
+      >
+        <Link href="/criar-conta">
+          {t("hasnt_account")}{" "}
+          <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer">
+            {t("register")}{" "}
+          </span>
+        </Link>
+      </Button>
     </div>
   );
 }

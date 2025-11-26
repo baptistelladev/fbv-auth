@@ -3,7 +3,13 @@
 import { useTheme } from "@/context/ThemeContext";
 import { ReactNode } from "react";
 
-export function IconFrameComp({ children }: { children: ReactNode }) {
+// INTERFACE
+type Props = {
+  children?: ReactNode;
+};
+
+export function IconFrameComp({ children }: Props) {
+  // HOOKS
   const { theme } = useTheme();
 
   return (

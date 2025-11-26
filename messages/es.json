@@ -1,5 +1,17 @@
 {
   "LOGIN_PAGE": {
-    "section_title": "<b>Acceda</b> a su cuenta"
+    "section_title": "<b>Accede</b> a tu cuenta",
+    "section_desc": "Ingresa tu información de acceso",
+    "hasnt_account": "¿Aún no tienes una cuenta?",
+    "register": "Regístrate",
+    "login": "Iniciar sesión",
+    "logging_in": "Iniciando sesión",
+    "forgot_password": "¿Olvidaste tu contraseña?"
+  },
+  "GENERAL": {
+    "show_password": "Mostrar contraseña",
+    "hide_password": "Ocultar contraseña",
+    "theme": "Tema",
+    "language": "Idioma"
   }
 }

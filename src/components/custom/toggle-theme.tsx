@@ -6,10 +6,21 @@ import { useTheme } from "@/context/ThemeContext";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
-export function ModeToggle({ classNames }: { classNames?: string }) {
+// INTERFACE
+type Props = {
+  classNames?: string;
+};
+
+export function ModeToggle({ classNames }: Props) {
+  // STATES
   const { setTheme, theme } = useTheme();
 
+  // HOOKS
+  const tg = useTranslations("GENERAL");
+
+  // FUNÇÕES
   const defineTheme = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark");
   };
@@ -18,6 +29,7 @@ export function ModeToggle({ classNames }: { classNames?: string }) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
+          title={tg("theme")}
           variant="ghost"
           size="icon"
           onClick={() => defineTheme()}
@@ -37,7 +49,7 @@ export function ModeToggle({ classNames }: { classNames?: string }) {
         </Button>
       </TooltipTrigger>
       <TooltipContent side="bottom" sideOffset={-3}>
-        <p>Tema</p>
+        <p>{tg("theme")}</p>
       </TooltipContent>
     </Tooltip>
   );

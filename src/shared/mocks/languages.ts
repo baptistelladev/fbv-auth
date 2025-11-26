@@ -6,7 +6,7 @@ export const LANGUAGES: LanguageType[] = [
     text: {
       pt: "Português",
       en: "Portuguese",
-      es: "Portug",
+      es: "Portugués",
     },
     image: "pt.svg",
   },
@@ -15,7 +15,7 @@ export const LANGUAGES: LanguageType[] = [
     text: {
       pt: "Inglês",
       en: "English",
-      es: "Eniad",
+      es: "Inglés",
     },
     image: "en.svg",
   },
@@ -24,7 +24,7 @@ export const LANGUAGES: LanguageType[] = [
     text: {
       pt: "Espanhol",
       en: "Spanish",
-      es: "spa",
+      es: "Español",
     },
     image: "es.svg",
   },
