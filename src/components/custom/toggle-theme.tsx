@@ -3,10 +3,10 @@
 import { Moon, Sun } from "lucide-react";
 
 import { useTheme } from "@/context/ThemeContext";
-import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 // INTERFACE
 type Props = {

@@ -2,7 +2,6 @@ import { AnfitrionLogoComp } from "@/components/custom/anfitrion-logo";
 import { CopyrightComp } from "@/components/custom/copyright";
 import { CurrentLanguageComp } from "@/components/custom/current-language";
 import { ModeToggle } from "@/components/custom/toggle-theme";
-import Link from "next/link";
 import { ViewTransition } from "react";
 
 type Props = {

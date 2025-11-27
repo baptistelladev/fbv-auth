@@ -3,7 +3,7 @@
 import { cn, getFlag } from "@/lib/utils";
 import { LANGUAGES } from "@/shared/mocks/languages";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { Globe, Languages } from "lucide-react";
+import { Globe } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import {
@@ -52,7 +52,6 @@ export function CurrentLanguageComp({ classNames }: Props) {
       icon: <Globe strokeWidth={1} className="size-5!" />,
       position: "top-center",
       closeButton: true,
-      duration: 10000000,
     });
   }
 
