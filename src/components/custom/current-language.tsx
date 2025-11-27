@@ -68,11 +68,11 @@ export function CurrentLanguageComp({ classNames }: Props) {
                 variant="outline"
                 size="icon"
                 className={cn(
-                  "dark:text-neutral-white cursor-pointer hover:opacity-50 transition-opacity duration-300 rounded-full dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700  dark:border-[0.5px]",
+                  "rounded-full cursor-pointer  transition-none text-neutral-400  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
                   classNames
                 )}
               >
-                <Globe strokeWidth={1.5} />
+                <Globe strokeWidth={1.2} className="size-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent

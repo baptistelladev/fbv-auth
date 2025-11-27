@@ -2,51 +2,49 @@
 
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useEffectEvent, useState } from "react";
+import { ReactNode, useEffect, useEffectEvent, useRef, useState } from "react";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 // INTERFACE
 type Props = {
   classNames?: string;
-  isLink?: boolean;
-  href?: string;
+  href?: any;
 };
 
-export const AnfitrionLogoComp = ({
-  classNames,
-  isLink = false,
-  href,
-}: Props) => {
+export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
   const tg = useTranslations("GENERAL");
 
   const pathname = usePathname().split("/")[2];
 
   const isLogado = false;
 
-  function Logo(): ReactNode {
-    return (
-      <p
-        className={cn(
-          "text-neutral-700 dark:text-white font-baloo font-thin text-sm",
-          classNames
-        )}
-      >
-        anfitri<span className="text-green-anfitrion font-bold">on</span>
-      </p>
-    );
-  }
+  const ariaLabel =
+    isLogado && pathname
+      ? "Ir para a tela principal"
+      : !isLogado && pathname !== "login"
+      ? "Ir para a tela de login"
+      : "Logo anfitrion";
 
-  return isLink &&
-    href &&
-    ((!isLogado && pathname !== "login") || (isLogado && pathname)) ? (
-    <Link
-      href={href}
-      className="inline-block hover:opacity-50 transition-opacity duration-300"
+  return (
+    <Button
+      size={"sm"}
+      asChild
+      aria-label={ariaLabel}
+      className={"opacity-100! min-h-0 rounded-full h-9 bg-neutral-800"}
+      title={"anfitrion"}
     >
-      <Logo />
-    </Link>
-  ) : (
-    <Logo />
+      <Link href={href}>
+        <span
+          className={cn(
+            "text-neutral-100 font-baloo font-normal text-sm",
+            classNames
+          )}
+        >
+          anfitri<span className="text-green-anfitrion font-bold">on</span>
+        </span>
+      </Link>
+    </Button>
   );
 };

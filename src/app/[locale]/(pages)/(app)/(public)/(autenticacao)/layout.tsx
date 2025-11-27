@@ -17,8 +17,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     <section className="authentication-layout-wrapper w-full flex flex-col-reverse md:flex-row h-auto md:h-screen md:overflow-hidden bg-linear-to-bt-effect">
       <div className="authentication-pages-wrapper flex flex-col px-6 pt-6 pb-6 md:pb-12 md:pr-0 h-svh md:h-full w-full md:w-[40%] md:min-w-[400px] bg-linear-to-bt-effect">
         <header className="w-full flex  items-center">
-          <div className="flex-1">
-            <AnfitrionLogoComp classNames="text-2xl" isLink href="/login" />
+          <div className="flex-1" aria-live="polite">
+            <AnfitrionLogoComp classNames="text-lg" href="/login" />
           </div>
 
           <div className="flex items-center justify-end gap-2">

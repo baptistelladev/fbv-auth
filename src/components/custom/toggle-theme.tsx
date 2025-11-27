@@ -32,21 +32,20 @@ export function ModeToggle({ classNames }: Props) {
           aria-label={tg("theme")}
           aria-pressed={theme === "dark"}
           title={tg("theme")}
-          variant="outline"
           size="icon"
           onClick={() => defineTheme()}
           className={cn(
-            "dark:text-neutral-white cursor-pointer hover:opacity-50 transition-opacity duration-300 rounded-full dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]",
+            "rounded-full cursor-pointer  transition-none text-neutral-400  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
             classNames
           )}
         >
           <Sun
             className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
-            strokeWidth={1.5}
+            strokeWidth={1.3}
           />
           <Moon
             className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
-            strokeWidth={1.5}
+            strokeWidth={1.3}
           />
         </Button>
       </TooltipTrigger>
