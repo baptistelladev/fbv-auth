@@ -18,12 +18,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <div className="authentication-pages-wrapper flex flex-col px-6 pt-6 pb-6 md:pb-12 md:pr-0 h-svh md:h-full w-full md:w-[40%] md:min-w-[400px] bg-linear-to-bt-effect">
         <header className="w-full flex  items-center">
           <div className="flex-1">
-            <Link
-              href="/"
-              className="inline-block hover:opacity-50 transition-opacity duration-300"
-            >
-              <AnfitrionLogoComp classNames="text-2xl" />
-            </Link>
+            <AnfitrionLogoComp classNames="text-2xl" isLink href="/login" />
           </div>
 
           <div className="flex items-center justify-end gap-2">

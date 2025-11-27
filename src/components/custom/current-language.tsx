@@ -62,6 +62,8 @@ export function CurrentLanguageComp({ classNames }: Props) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
+                title={tg("language")}
+                aria-label={tg("language")}
                 variant="outline"
                 size="icon"
                 className={cn(
@@ -72,7 +74,11 @@ export function CurrentLanguageComp({ classNames }: Props) {
                 <Globe strokeWidth={1.5} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]">
+            <DropdownMenuContent
+              className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]"
+              role="group"
+              aria-label={`${tg("choose_language")}`}
+            >
               {LANGUAGES.map((lang) => (
                 <DropdownMenuItem
                   onClick={() => handleLangChange(lang)}
@@ -89,7 +95,7 @@ export function CurrentLanguageComp({ classNames }: Props) {
                       <Image
                         title={lang.text[locale]}
                         src={getFlag(lang.value)}
-                        alt={tg("flag")}
+                        alt={lang.text[locale]}
                         width={17}
                         height={11.16}
                       />
@@ -103,7 +109,7 @@ export function CurrentLanguageComp({ classNames }: Props) {
       </TooltipTrigger>
 
       <TooltipContent side="bottom" sideOffset={5}>
-        <p>{tg("language")}</p>
+        {tg("language")}
       </TooltipContent>
     </Tooltip>
   );

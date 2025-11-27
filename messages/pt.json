@@ -18,12 +18,19 @@
     "language": "Idioma",
     "flag": "bandeira",
     "email": "email",
-    "password": "senha"
+    "password": "senha",
+    "choose_language": "Escolha um idioma",
+    "redirect_not_authenticated": "Ir para tela de login",
+    "redirect_authenticated": "Ir para tela principal"
   },
   "COMPONENTS": {
     "sonner": {
       "lang": {
         "message": "Você alterou o idioma para {language}"
+      },
+      "notifications": {
+        "aria-label": "Notificações",
+        "close-aria-label": "Fechar notificação"
       }
     }
   }

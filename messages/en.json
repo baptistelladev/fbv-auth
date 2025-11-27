@@ -18,12 +18,17 @@
     "language": "Language",
     "flag": "flag",
     "email": "email",
-    "password": "password"
+    "password": "password",
+    "choose_language": "Choose a language"
   },
   "COMPONENTS": {
     "sonner": {
       "lang": {
         "message": "You changed the language to {language}"
+      },
+      "notifications": {
+        "aria-label": "Notifications",
+        "close-aria-label": "Close notifications"
       }
     }
   }

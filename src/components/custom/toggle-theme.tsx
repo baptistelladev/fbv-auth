@@ -29,6 +29,8 @@ export function ModeToggle({ classNames }: Props) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
+          aria-label={tg("theme")}
+          aria-pressed={theme === "dark"}
           title={tg("theme")}
           variant="outline"
           size="icon"
@@ -49,7 +51,7 @@ export function ModeToggle({ classNames }: Props) {
         </Button>
       </TooltipTrigger>
       <TooltipContent side="bottom" sideOffset={5}>
-        <p>{tg("theme")}</p>
+        {tg("theme")}
       </TooltipContent>
     </Tooltip>
   );

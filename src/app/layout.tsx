@@ -4,7 +4,7 @@ import { CustomLayout } from "./custom-layout";
 import "./globals.css";
 import { routing } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { LANGUAGES } from "@/shared/mocks/languages";
 import { getLangAttr } from "@/lib/utils";
 
@@ -37,12 +37,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = useLocale();
+  const tc = useTranslations("COMPONENTS");
 
   return (
     <html lang={getLangAttr(LANGUAGES, locale)}>
       <body className={`${nunito.variable} ${baloo2.variable}`}>
         <CustomLayout>{children}</CustomLayout>
-        <Toaster />
+        <Toaster
+          containerAriaLabel={tc("sonner.notifications.aria-label")}
+          toastOptions={{
+            closeButtonAriaLabel: tc("sonner.notifications.close-aria-label"),
+          }}
+        />
       </body>
     </html>
   );

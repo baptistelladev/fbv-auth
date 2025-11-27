@@ -18,13 +18,18 @@
     "language": "Idioma",
     "flag": "bandera",
     "email": "correo electrónico",
-    "password": "contraseña"
+    "password": "contraseña",
+    "choose_language": "Elige un idioma"
   },
   "COMPONENTS": {
     "sonner": {
       "lang": {
         "title": "",
         "message": "Has cambiado el idioma a {language}"
+      },
+      "notifications": {
+        "aria-label": "Notificaciones",
+        "close-aria-label": "Cerrar notificaciones"
       }
     }
   }

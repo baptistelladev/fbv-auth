@@ -20,6 +20,9 @@ import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
+import ForgotPasswordButtonComp from "./SignUpComp";
+import SignUpComp from "./SignUpComp";
+import ForgotPasswordComp from "./ForgotPasswordComp";
 
 export function LoginForm() {
   // TRADUÇÃO
@@ -63,19 +66,21 @@ export function LoginForm() {
 
             <div className="flex flex-col justify-start items-start">
               <Label
-                htmlFor="email"
-                className="pl-3 text-[9px] font-normal text-neutral-700 dark:text-neutral-100"
+                id="email"
+                aria-label="email"
+                htmlFor="email-input"
+                className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
               >
                 {tg("email")}
               </Label>
 
               <InputGroupInput
-                id="email"
+                id="email-input"
                 placeholder={`${t("input_email_placeholder")}`}
                 type="email"
                 inputMode="email"
                 autoFocus={false}
-                aria-label="email"
+                aria-labelledby="email"
               />
             </div>
           </InputGroup>
@@ -94,23 +99,25 @@ export function LoginForm() {
 
             <div className="flex flex-col justify-start items-start w-full">
               <Label
-                htmlFor="password"
-                className="pl-3 text-[9px] font-normal text-neutral-700 dark:text-neutral-100"
+                id="password"
+                aria-label="password"
+                htmlFor="password-input"
+                className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
               >
                 {tg("password")}
               </Label>
 
               <InputGroupInput
-                id="password"
+                id="password-input"
                 type={showPasswordField ? "text" : "password"}
                 placeholder="* * * * * *"
                 inputMode="text"
                 autoFocus={false}
-                aria-label="password"
+                aria-labelledby="password"
               />
             </div>
 
-            <InputGroupAddon align="inline-end" className="mr-0! pr-2">
+            <InputGroupAddon align="inline-end" className="mr-0! ">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <InputGroupButton
@@ -120,7 +127,7 @@ export function LoginForm() {
                         : tg("show_password")
                     }
                     disabled={isLogging}
-                    className="h-auto min-h-0 rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300"
+                    className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1"
                     size="icon-sm"
                     onClick={() => togglePassword()}
                   >
@@ -142,26 +149,12 @@ export function LoginForm() {
         </div>
       </div>
 
-      <Button
-        asChild
-        title={t("forgot_password")}
-        disabled={isLogging}
-        className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:text-green-dark-anfitrion cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
-        variant="link"
-      >
-        <Link
-          href="/esqueci-minha-senha"
-          className={` transition-opacity transition-300 ${
-            isLogging && "disable-link"
-          }`}
-        >
-          {t("forgot_password")}
-        </Link>
-      </Button>
+      <ForgotPasswordComp isLogging={isLogging} />
 
       <Button
         asChild
         title={isLogging ? t("logging_in") : t("login")}
+        aria-label={`${t("login")}`}
         disabled={isLogging}
         className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
         onClick={() => login()}
@@ -179,25 +172,7 @@ export function LoginForm() {
         </motion.button>
       </Button>
 
-      <Button
-        asChild
-        title={`${t("hasnt_account")} ${t("register")}`}
-        disabled={isLogging}
-        className="text-xs m-0 p-0 font-normal group no-underline hover:no-underline hover:opacity-50 h-auto min-h-0 text-neutral-700 dark:text-neutral-100 transition-none"
-        variant="link"
-      >
-        <Link
-          href="/criar-conta"
-          className={` transition-opacity transition-300 ${
-            isLogging && "disable-link"
-          }`}
-        >
-          {t("hasnt_account")}
-          <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer -ml-1">
-            {t("register")}
-          </span>
-        </Link>
-      </Button>
+      <SignUpComp isLogging={isLogging} />
     </div>
   );
 }
