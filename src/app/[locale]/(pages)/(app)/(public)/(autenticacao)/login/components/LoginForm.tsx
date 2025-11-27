@@ -60,7 +60,7 @@ export function LoginForm() {
             <InputGroupAddon>
               <AtSign
                 strokeWidth={1.7}
-                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-600 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
+                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
               />
             </InputGroupAddon>
 
@@ -93,7 +93,7 @@ export function LoginForm() {
             <InputGroupAddon>
               <SquareAsterisk
                 strokeWidth={1.5}
-                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-600 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
+                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
               />
             </InputGroupAddon>
 

@@ -49,9 +49,10 @@ export function CurrentLanguageComp({ classNames }: Props) {
   function showToast(lang: LanguageType): void {
     toast.message(lang.title, {
       description: `${lang.messageChange} ${lang.text[lang.value as Locale]}`,
-      icon: <Languages strokeWidth={1.5} className="size-4" />,
+      icon: <Globe strokeWidth={1} className="size-5!" />,
       position: "top-center",
       closeButton: true,
+      duration: 10000000,
     });
   }
 

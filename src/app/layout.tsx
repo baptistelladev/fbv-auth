@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { useLocale, useTranslations } from "next-intl";
 import { LANGUAGES } from "@/shared/mocks/languages";
 import { getLangAttr } from "@/lib/utils";
+import CustomToasterComp from "@/components/custom/custom-toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -37,18 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = useLocale();
-  const tc = useTranslations("COMPONENTS");
 
   return (
     <html lang={getLangAttr(LANGUAGES, locale)}>
       <body className={`${nunito.variable} ${baloo2.variable}`}>
         <CustomLayout>{children}</CustomLayout>
-        <Toaster
-          containerAriaLabel={tc("sonner.notifications.aria-label")}
-          toastOptions={{
-            closeButtonAriaLabel: tc("sonner.notifications.close-aria-label"),
-          }}
-        />
+        <CustomToasterComp />
       </body>
     </html>
   );

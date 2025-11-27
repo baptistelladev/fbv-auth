@@ -22,7 +22,7 @@ export const AnfitrionLogoComp = ({
 
   const pathname = usePathname().split("/")[2];
 
-  const isLogado = true;
+  const isLogado = false;
 
   function Logo(): ReactNode {
     return (
