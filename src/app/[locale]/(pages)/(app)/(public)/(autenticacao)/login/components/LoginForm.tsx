@@ -99,6 +99,7 @@ export function LoginForm() {
 
                       <InputGroupInput
                         {...field}
+                        aria-required={true}
                         id={field.name}
                         placeholder={`${t("input_email_placeholder")}`}
                         type="email"
@@ -155,6 +156,7 @@ export function LoginForm() {
                       <InputGroupInput
                         {...field}
                         id={field.name}
+                        aria-required={true}
                         aria-invalid={
                           fieldState.invalid &&
                           fieldState.isTouched &&

@@ -15,7 +15,7 @@ export default function SectionTitleNdeskComp({ title, desc }: Props) {
         </h1>
       )}
       {desc && (
-        <p className="text-sm font-light text-muted-foreground">{desc}.</p>
+        <p className="text-sm font-light text-muted-foreground">{desc}</p>
       )}
     </div>
   );
