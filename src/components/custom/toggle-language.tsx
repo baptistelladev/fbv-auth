@@ -85,7 +85,7 @@ export function ToggleLanguageComp({ classNames }: Props) {
       </Tooltip>
 
       <DropdownMenuContent
-        className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]"
+        className="dark:bg-neutral-800  border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]"
         role="group"
         aria-label={`${tg("choose_language")}`}
       >
@@ -93,7 +93,7 @@ export function ToggleLanguageComp({ classNames }: Props) {
           <DropdownMenuItem
             onClick={() => handleLangChange(lang)}
             key={lang.value}
-            className="flex items-center justify-start gap-2  dark:hover:bg-neutral-800 text-xs font-normal"
+            className="flex items-center justify-start gap-2  dark:hover:bg-neutral-700 text-xs font-normal"
             aria-label={lang.text[locale]}
           >
             {lang.value === locale && (

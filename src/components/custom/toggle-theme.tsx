@@ -31,6 +31,7 @@ export function ToggleModeComp({ classNames }: Props) {
         <Button
           aria-label={tg("theme")}
           aria-pressed={theme === "dark"}
+          variant="outline"
           title={tg("theme")}
           size="icon"
           onClick={() => defineTheme()}
