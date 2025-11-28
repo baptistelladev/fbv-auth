@@ -23,8 +23,29 @@ import { useState } from "react";
 import ForgotPasswordButtonComp from "./SignUpComp";
 import SignUpComp from "./SignUpComp";
 import ForgotPasswordComp from "./ForgotPasswordComp";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import * as z from "zod";
+import { Field, FieldError, FieldGroup, FieldSet } from "@/components/ui/field";
 
 export function LoginForm() {
+  const loginFormSchema = z.object({
+    email: z.email(),
+    password: z.string().min(6),
+  });
+
+  const loginForm = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { formState } = loginForm;
+
   // TRADUÇÃO
   const t = useTranslations("LOGIN_PAGE");
   const tg = useTranslations("GENERAL");
@@ -47,132 +68,151 @@ export function LoginForm() {
    * @description Logar na aplicação.
    * @author Felipe Baptistella
    */
-  function login() {
+  function onSubmit(data: z.infer<typeof loginFormSchema>) {
     setIsLogging(true);
     setShowPasswordField(false);
   }
 
   return (
-    <div className="flex flex-col ">
-      <div className="rounded-md overflow-hidden shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 focus-anfitrion-effect">
-        <div>
-          <InputGroup className="border-none shadow-none rounded-none h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
-            <InputGroupAddon>
-              <AtSign
-                strokeWidth={1.7}
-                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
-              />
-            </InputGroupAddon>
+    <form
+      onSubmit={loginForm.handleSubmit(onSubmit)}
+      className="space-y-4 max-w-sm"
+    >
+      <div className="flex flex-col ">
+        <div className="rounded-md overflow-hidden shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 focus-anfitrion-effect">
+          <FieldGroup className="gap-0 w-full">
+            <Controller
+              name="email"
+              control={loginForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <InputGroup className="border-none shadow-none rounded-none h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
+                    <InputGroupAddon>
+                      <AtSign
+                        data-invalid={fieldState.invalid}
+                        strokeWidth={1.7}
+                        className="data-[invalid=true]:text-destructive size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
+                      />
+                    </InputGroupAddon>
 
-            <div className="flex flex-col justify-start items-start">
-              <Label
-                id="email"
-                aria-label="email"
-                htmlFor="email-input"
-                className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
-              >
-                {tg("email")}
-              </Label>
+                    <div className="flex flex-col justify-start items-start w-full">
+                      <Label
+                        htmlFor={field.name}
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
+                      >
+                        {tg("email")}
+                      </Label>
 
-              <InputGroupInput
-                id="email-input"
-                placeholder={`${t("input_email_placeholder")}`}
-                type="email"
-                inputMode="email"
-                autoFocus={false}
-                aria-labelledby="email"
-              />
-            </div>
-          </InputGroup>
+                      <InputGroupInput
+                        {...field}
+                        id={field.name}
+                        placeholder={`${t("input_email_placeholder")}`}
+                        type="email"
+                        inputMode="email"
+                        autoFocus={false}
+                        aria-invalid={fieldState.invalid}
+                      />
+                    </div>
+                  </InputGroup>
+                </Field>
+              )}
+            />
+
+            <Separator className="h-px dark:h-[0.5px] bg-neutral-200 dark:bg-neutral-700" />
+
+            <Controller
+              name="password"
+              control={loginForm.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <InputGroup className="border-none shadow-none rounded-none h-13 has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
+                    <InputGroupAddon>
+                      <SquareAsterisk
+                        data-invalid={fieldState.invalid}
+                        strokeWidth={1.5}
+                        className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 data-[invalid=true]:text-destructive"
+                      />
+                    </InputGroupAddon>
+
+                    <div className="flex flex-col justify-start items-start w-full">
+                      <Label
+                        htmlFor={field.name}
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
+                      >
+                        {tg("password")}
+                      </Label>
+
+                      <InputGroupInput
+                        {...field}
+                        id={field.name}
+                        aria-invalid={fieldState.invalid}
+                        type={showPasswordField ? "text" : "password"}
+                        placeholder="* * * * * *"
+                        inputMode="text"
+                        autoFocus={false}
+                      />
+                    </div>
+
+                    <InputGroupAddon align="inline-end" className="mr-0! ">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <InputGroupButton
+                            title={
+                              showPasswordField
+                                ? tg("hide_password")
+                                : tg("show_password")
+                            }
+                            disabled={isLogging}
+                            className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1"
+                            size="icon-sm"
+                            onClick={() => togglePassword()}
+                          >
+                            {showPasswordField ? (
+                              <Eye strokeWidth={1.6} />
+                            ) : (
+                              <EyeClosed strokeWidth={1.6} />
+                            )}
+                          </InputGroupButton>
+                        </TooltipTrigger>
+                        <TooltipContent sideOffset={-4}>
+                          {showPasswordField
+                            ? tg("hide_password")
+                            : tg("show_password")}
+                        </TooltipContent>
+                      </Tooltip>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </Field>
+              )}
+            />
+          </FieldGroup>
         </div>
 
-        <Separator className="h-px dark:h-[0.5px] bg-neutral-200 dark:bg-neutral-700" />
+        <ForgotPasswordComp isLogging={isLogging} />
 
-        <div className="">
-          <InputGroup className="border-none shadow-none rounded-none h-13 has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
-            <InputGroupAddon>
-              <SquareAsterisk
-                strokeWidth={1.5}
-                className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
-              />
-            </InputGroupAddon>
+        <Button
+          type="submit"
+          asChild
+          title={isLogging ? t("logging_in") : t("login")}
+          aria-label={`${t("login")}`}
+          disabled={isLogging || !formState.isValid}
+          className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
+        >
+          <motion.button whileTap={{ scale: 0.95 }} className="">
+            {isLogging ? (
+              <>
+                <Spinner /> {t("logging_in")}
+              </>
+            ) : (
+              <>
+                {t("login")} <LogIn />
+              </>
+            )}
+          </motion.button>
+        </Button>
 
-            <div className="flex flex-col justify-start items-start w-full">
-              <Label
-                id="password"
-                aria-label="password"
-                htmlFor="password-input"
-                className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
-              >
-                {tg("password")}
-              </Label>
-
-              <InputGroupInput
-                id="password-input"
-                type={showPasswordField ? "text" : "password"}
-                placeholder="* * * * * *"
-                inputMode="text"
-                autoFocus={false}
-                aria-labelledby="password"
-              />
-            </div>
-
-            <InputGroupAddon align="inline-end" className="mr-0! ">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <InputGroupButton
-                    title={
-                      showPasswordField
-                        ? tg("hide_password")
-                        : tg("show_password")
-                    }
-                    disabled={isLogging}
-                    className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1"
-                    size="icon-sm"
-                    onClick={() => togglePassword()}
-                  >
-                    {showPasswordField ? (
-                      <Eye strokeWidth={1.6} />
-                    ) : (
-                      <EyeClosed strokeWidth={1.6} />
-                    )}
-                  </InputGroupButton>
-                </TooltipTrigger>
-                <TooltipContent sideOffset={-4}>
-                  {showPasswordField
-                    ? tg("hide_password")
-                    : tg("show_password")}
-                </TooltipContent>
-              </Tooltip>
-            </InputGroupAddon>
-          </InputGroup>
-        </div>
+        <SignUpComp isLogging={isLogging} />
       </div>
-
-      <ForgotPasswordComp isLogging={isLogging} />
-
-      <Button
-        asChild
-        title={isLogging ? t("logging_in") : t("login")}
-        aria-label={`${t("login")}`}
-        disabled={isLogging}
-        className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
-        onClick={() => login()}
-      >
-        <motion.button whileTap={{ scale: 0.95 }} className="">
-          {isLogging ? (
-            <>
-              <Spinner /> {t("logging_in")}
-            </>
-          ) : (
-            <>
-              {t("login")} <LogIn />
-            </>
-          )}
-        </motion.button>
-      </Button>
-
-      <SignUpComp isLogging={isLogging} />
-    </div>
+    </form>
   );
 }

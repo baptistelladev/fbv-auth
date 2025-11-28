@@ -25,6 +25,7 @@ export default function SignUpComp({ isLogging }: Props) {
       disabled={isLogging}
       className="text-xs m-0 p-0 font-normal group no-underline hover:no-underline hover:opacity-50 h-auto min-h-0 text-neutral-700 dark:text-neutral-100 transition-none"
       variant="link"
+      type="button"
     >
       <Link
         aria-disabled={isLogging}

@@ -19,7 +19,9 @@
     "flag": "flag",
     "email": "email",
     "password": "password",
-    "choose_language": "Choose a language"
+    "choose_language": "Choose a language",
+    "redirect_not_authenticated": "Go to the login screen",
+    "redirect_authenticated": "Go to the main screen"
   },
   "COMPONENTS": {
     "sonner": {

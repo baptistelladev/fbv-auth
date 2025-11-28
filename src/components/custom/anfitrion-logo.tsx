@@ -20,20 +20,20 @@ export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
 
   const isLogado = false;
 
-  const ariaLabel =
+  const ariaLabelOrTitle =
     isLogado && pathname
-      ? "Ir para a tela principal"
+      ? tg("redirect_authenticated")
       : !isLogado && pathname !== "login"
-      ? "Ir para a tela de login"
+      ? tg("redirect_not_authenticated")
       : "Logo anfitrion";
 
   return (
     <Button
       size={"sm"}
       asChild
-      aria-label={ariaLabel}
+      aria-label={ariaLabelOrTitle}
       className={"opacity-100! min-h-0 rounded-full h-9 bg-neutral-800"}
-      title={"anfitrion"}
+      title={ariaLabelOrTitle}
     >
       <Link href={href}>
         <span

@@ -19,7 +19,9 @@
     "flag": "bandera",
     "email": "correo electrónico",
     "password": "contraseña",
-    "choose_language": "Elige un idioma"
+    "choose_language": "Elige un idioma",
+    "redirect_not_authenticated": "Ir a la pantalla de inicio de sesión",
+    "redirect_authenticated": "Ir a la pantalla principal"
   },
   "COMPONENTS": {
     "sonner": {

@@ -23,6 +23,7 @@ export default function ForgotPasswordComp({ isLogging }: Props) {
       disabled={isLogging}
       className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:text-green-dark-anfitrion cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
       variant="link"
+      type="button"
     >
       <Link
         aria-disabled={isLogging}
