@@ -76,7 +76,7 @@ export function LoginForm() {
                     fieldState.isDirty
                   }
                 >
-                  <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent!">
+                  <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
                     <InputGroupAddon>
                       <AtSign
                         data-invalid={
@@ -98,6 +98,7 @@ export function LoginForm() {
                       </Label>
 
                       <InputGroupInput
+                        className="text-sm"
                         {...field}
                         aria-required={true}
                         id={field.name}
@@ -163,6 +164,7 @@ export function LoginForm() {
                           fieldState.isDirty
                         }
                         type={showPasswordField ? "text" : "password"}
+                        className="text-sm"
                         autoComplete="off"
                         placeholder="* * * * * *"
                         inputMode="text"

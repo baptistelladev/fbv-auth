@@ -18,6 +18,8 @@ import { LanguageAsLocale, LanguageType } from "@/shared/types/language.type";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Fragment } from "react/jsx-runtime";
+import { useState } from "react";
 
 // INTERFACE
 type Props = {
@@ -57,61 +59,66 @@ export function ToggleLanguageComp({ classNames }: Props) {
   }
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                title={tg("language")}
-                aria-label={tg("language")}
-                variant="outline"
-                size="icon"
-                className={cn(
-                  "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
-                  classNames
-                )}
-              >
-                <Globe strokeWidth={1} className="size-4.5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]"
-              role="group"
-              aria-label={`${tg("choose_language")}`}
+    <DropdownMenu>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DropdownMenuTrigger asChild>
+            <Button
+              id={tg("language")}
+              size={"icon"}
+              title={tg("language")}
+              aria-label={tg("language")}
+              variant="outline"
+              className={cn(
+                "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
+                classNames
+              )}
             >
-              {LANGUAGES.map((lang) => (
-                <DropdownMenuItem
-                  onClick={() => handleLangChange(lang)}
-                  key={lang.value}
-                  className="flex items-center justify-start gap-2  dark:hover:bg-neutral-800"
-                >
-                  {lang.value === locale && (
-                    <span className="size-1.5 bg-green-anfitrion rounded-full"></span>
-                  )}
+              <Globe strokeWidth={1} className="size-4.5" />
+            </Button>
+          </DropdownMenuTrigger>
+        </TooltipTrigger>
 
-                  <p className="text-xs font-normal">{lang.text[locale]}</p>
-                  <DropdownMenuShortcut>
-                    {
-                      <Image
-                        title={lang.text[locale]}
-                        src={getFlag(lang.value)}
-                        alt={lang.text[locale]}
-                        width={17}
-                        height={11.16}
-                      />
-                    }
-                  </DropdownMenuShortcut>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </TooltipTrigger>
+        <TooltipContent side="bottom" sideOffset={5}>
+          {tg("language")}
+        </TooltipContent>
+      </Tooltip>
 
-      <TooltipContent side="bottom" sideOffset={5}>
-        {tg("language")}
-      </TooltipContent>
-    </Tooltip>
+      <DropdownMenuContent
+        className="dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]"
+        role="group"
+        aria-label={`${tg("choose_language")}`}
+      >
+        {LANGUAGES.map((lang) => (
+          <DropdownMenuItem
+            onClick={() => handleLangChange(lang)}
+            key={lang.value}
+            className="flex items-center justify-start gap-2  dark:hover:bg-neutral-800 text-xs font-normal"
+            aria-label={lang.text[locale]}
+          >
+            {lang.value === locale && (
+              <span
+                className="size-1.5 bg-green-anfitrion rounded-full"
+                aria-hidden="true"
+              ></span>
+            )}
+
+            {lang.text[locale]}
+
+            <DropdownMenuShortcut>
+              {
+                <Image
+                  title={lang.text[locale]}
+                  src={getFlag(lang.value)}
+                  alt={""}
+                  width={17}
+                  height={11.16}
+                />
+              }
+            </DropdownMenuShortcut>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

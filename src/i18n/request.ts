@@ -8,8 +8,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
     ? requested
     : routing.defaultLocale;
 
-  console.log(locale, "tamo com");
-
   return {
     locale,
     messages: (await import(`../../messages/${locale}.json`)).default,

@@ -21,8 +21,11 @@ export default function LoginPage() {
   const t = useTranslations("LOGIN_PAGE");
 
   return (
-    <section className="login-page-wrapper w-full">
-      <div className="max-w-md m-auto flex items-center justify-center flex-col">
+    <main
+      aria-labelledby={"login-form-title"}
+      className="login-page-wrapper w-full"
+    >
+      <section className="max-w-md m-auto flex items-center justify-center flex-col">
         <IconFrameComp>
           <LogIn
             strokeWidth={1.2}
@@ -42,7 +45,7 @@ export default function LoginPage() {
         <div className="flex flex-col gap-3 pt-6 w-full max-w-xs">
           <LoginForm />
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

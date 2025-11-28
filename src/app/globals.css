@@ -177,6 +177,11 @@
     -webkit-text-fill-color: transparent;
   }
 
+  html,
+  body {
+    min-width: 345px;
+  }
+
   .icon-frame-effect {
     position: relative;
 
