@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { Nunito, Baloo_2 } from "next/font/google";
-import { CustomLayout } from "./custom-layout";
+
 import "./globals.css";
 import { routing } from "@/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
-import { useLocale, useTranslations } from "next-intl";
+import { NextIntlClientProvider, useLocale, useTranslations } from "next-intl";
 import { LANGUAGES } from "@/shared/mocks/languages";
 import { getLangAttr } from "@/lib/utils";
 import CustomToasterComp from "@/components/custom/custom-toaster";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { AuthProvider } from "@/context/AuthContext";
+import LocaleLayout from "./[locale]/layout";
+
+import * as z from "zod";
+import { en, pt } from "zod/locales";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,17 +38,17 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type Props = {
   children: React.ReactNode;
-}>) {
-  const locale = useLocale();
+};
+
+export default function RootLayout({ children }: Props) {
+  const lang = useLocale();
 
   return (
-    <html lang={getLangAttr(LANGUAGES, locale)}>
+    <html lang={getLangAttr(LANGUAGES, lang)}>
       <body className={`${nunito.variable} ${baloo2.variable}`}>
-        <CustomLayout>{children}</CustomLayout>
+        <LocaleLayout>{children}</LocaleLayout>
         <CustomToasterComp />
       </body>
     </html>

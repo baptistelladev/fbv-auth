@@ -14,28 +14,29 @@ import {
 } from "../ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-import { LanguageType, Locale } from "@/shared/types/language.type";
+import { LanguageAsLocale, LanguageType } from "@/shared/types/language.type";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
+import z from "zod/v4";
+import { loadLocale } from "@/shared/utils/zod";
 
 // INTERFACE
 type Props = {
   classNames?: string;
 };
 
-export function CurrentLanguageComp({ classNames }: Props) {
+export function ToggleLanguageComp({ classNames }: Props) {
   // TRADUÇÃO
   const tg = useTranslations("GENERAL");
-  const tc = useTranslations("COMPONENTS.sonner.lang");
 
   // HOOKS
   const pathname = usePathname();
   const router = useRouter();
-  const locale = useLocale() as Locale;
+  const locale = useLocale() as LanguageAsLocale;
 
   // FUNÇÕES
-  function handleLangChange(lang: LanguageType) {
+  async function handleLangChange(lang: LanguageType) {
     const pathChunks = pathname.split("/");
     pathChunks[1] = lang.value;
     const newPath = pathChunks.join("/");
@@ -47,10 +48,12 @@ export function CurrentLanguageComp({ classNames }: Props) {
   }
 
   function showToast(lang: LanguageType): void {
-    toast.message(lang.title, {
-      description: `${lang.messageChange} ${lang.text[lang.value as Locale]}`,
+    toast.message(false, {
+      description: `${lang.messageChange} ${
+        lang.text[lang.value as LanguageAsLocale]
+      }`,
       icon: <Globe strokeWidth={1} className="size-5!" />,
-      position: "top-center",
+      position: "bottom-right",
       closeButton: true,
     });
   }
@@ -67,11 +70,11 @@ export function CurrentLanguageComp({ classNames }: Props) {
                 variant="outline"
                 size="icon"
                 className={cn(
-                  "rounded-full cursor-pointer  transition-none text-neutral-400  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
+                  "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
                   classNames
                 )}
               >
-                <Globe strokeWidth={1.2} className="size-5" />
+                <Globe strokeWidth={1} className="size-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent

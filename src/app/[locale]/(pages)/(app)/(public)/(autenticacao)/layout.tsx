@@ -1,7 +1,7 @@
 import { AnfitrionLogoComp } from "@/components/custom/anfitrion-logo";
 import { CopyrightComp } from "@/components/custom/copyright";
-import { CurrentLanguageComp } from "@/components/custom/current-language";
-import { ModeToggle } from "@/components/custom/toggle-theme";
+import { ToggleLanguageComp } from "@/components/custom/toggle-language";
+import { ToggleModeComp } from "@/components/custom/toggle-theme";
 
 import { ViewTransition } from "react";
 
@@ -22,8 +22,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           </div>
 
           <div className="flex items-center justify-end gap-2">
-            <CurrentLanguageComp />
-            <ModeToggle />
+            <ToggleLanguageComp />
+            <ToggleModeComp />
           </div>
         </header>
 

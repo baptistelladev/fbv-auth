@@ -49,7 +49,8 @@
   --color-green-dark-anfitrion: #547d0e;
   --color-online: #9dfd38;
 
-  --color-green-contrast: var(--green-contrast);
+  --color-focus: var(--focus);
+  --color-focus-shadow: var(--focus-shadow);
 }
 
 :root {
@@ -94,7 +95,8 @@
   --green-dark: #547d0e;
   --green-resident: #4d5935;
 
-  --green-contrast: #2d22f2;
+  --focus: rgba(234, 100, 217, 0.5);
+  --focus-shadow: rgba(234, 100, 217, 0.1);
 
   .bg-linear-to-bt-effect {
     @apply bg-linear-to-t from-neutral-100 to-white;
@@ -134,8 +136,6 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  --green-contrast: #7122f2;
-
   .bg-linear-to-bt-effect {
     @apply bg-linear-to-t from-neutral-900 to-neutral-800;
   }
@@ -161,11 +161,11 @@
   button,
   [data-slot="button"],
   [data-slot="dropdown-menu-trigger"] {
-    @apply focus-visible:outline-[3px] focus-visible:outline-dotted focus-visible:outline-green-contrast outline-offset-2;
+    @apply focus-visible:outline-focus focus-visible:outline-1 focus-visible:shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
   }
 
-  .focus-anfitrion-effect:not(:has(button:focus-visible)) {
-    @apply focus-within:outline-[3px] focus-within:outline-dotted focus-within:outline-green-contrast outline-offset-2;
+  .focus-anfitrion-effect:has(input:focus-visible) {
+    @apply border-focus! shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
   }
 
   .color-linear {

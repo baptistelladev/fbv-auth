@@ -1,4 +1,4 @@
-export type Locale = "pt" | "en" | "es";
+export type LanguageAsLocale = "pt" | "en" | "es";
 
 export type LanguageType = {
   value: string;

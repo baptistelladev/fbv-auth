@@ -13,7 +13,7 @@ type Props = {
   classNames?: string;
 };
 
-export function ModeToggle({ classNames }: Props) {
+export function ToggleModeComp({ classNames }: Props) {
   // STATES
   const { setTheme, theme } = useTheme();
 
@@ -35,17 +35,17 @@ export function ModeToggle({ classNames }: Props) {
           size="icon"
           onClick={() => defineTheme()}
           className={cn(
-            "rounded-full cursor-pointer  transition-none text-neutral-400  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
+            "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
             classNames
           )}
         >
           <Sun
-            className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
-            strokeWidth={1.3}
+            className={`size-5 ${theme !== "dark" && "hidden"}`}
+            strokeWidth={1.2}
           />
           <Moon
-            className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
-            strokeWidth={1.3}
+            className={`size-5 ${theme === "dark" && "hidden"}`}
+            strokeWidth={1.2}
           />
         </Button>
       </TooltipTrigger>

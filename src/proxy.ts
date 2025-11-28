@@ -31,7 +31,7 @@ const DEFAULT_URL_WHEN_NOT_AUTHENTICATED = `/${DEFAULT_LOCALE}/login`;
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const intlResponse = intlMiddleware(request);
 
   const path = (

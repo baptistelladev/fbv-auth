@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Field, FieldGroup } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -18,33 +19,15 @@ import { Separator } from "@radix-ui/react-separator";
 import { AtSign, Eye, EyeClosed, LogIn, SquareAsterisk } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { useState } from "react";
-import ForgotPasswordButtonComp from "./SignUpComp";
-import SignUpComp from "./SignUpComp";
-import ForgotPasswordComp from "./ForgotPasswordComp";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Controller } from "react-hook-form";
 import * as z from "zod";
-import { Field, FieldError, FieldGroup, FieldSet } from "@/components/ui/field";
+import { useLoginForm } from "../schemas/login-form.schema";
+import ForgotPasswordComp from "./ForgotPasswordComp";
+import SignUpComp from "./SignUpComp";
 
 export function LoginForm() {
-  const loginFormSchema = z.object({
-    email: z.email(),
-    password: z.string().min(6),
-  });
-
-  const loginForm = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const { formState } = loginForm;
+  const { form, formSchema, formState } = useLoginForm();
 
   // TRADUÇÃO
   const t = useTranslations("LOGIN_PAGE");
@@ -68,28 +51,35 @@ export function LoginForm() {
    * @description Logar na aplicação.
    * @author Felipe Baptistella
    */
-  function onSubmit(data: z.infer<typeof loginFormSchema>) {
+  function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLogging(true);
     setShowPasswordField(false);
   }
 
   return (
-    <form
-      onSubmit={loginForm.handleSubmit(onSubmit)}
-      className="space-y-4 max-w-sm"
-    >
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-sm">
       <div className="flex flex-col ">
-        <div className="rounded-md overflow-hidden shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 focus-anfitrion-effect">
+        <div className="rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ">
           <FieldGroup className="gap-0 w-full">
             <Controller
               name="email"
-              control={loginForm.control}
+              control={form.control}
               render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <InputGroup className="border-none shadow-none rounded-none h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
+                <Field
+                  data-invalid={
+                    fieldState.invalid &&
+                    fieldState.isTouched &&
+                    fieldState.isDirty
+                  }
+                >
+                  <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect">
                     <InputGroupAddon>
                       <AtSign
-                        data-invalid={fieldState.invalid}
+                        data-invalid={
+                          fieldState.invalid &&
+                          fieldState.isTouched &&
+                          fieldState.isDirty
+                        }
                         strokeWidth={1.7}
                         className="data-[invalid=true]:text-destructive size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100"
                       />
@@ -109,8 +99,14 @@ export function LoginForm() {
                         placeholder={`${t("input_email_placeholder")}`}
                         type="email"
                         inputMode="email"
+                        autoComplete="email"
                         autoFocus={false}
-                        aria-invalid={fieldState.invalid}
+                        disabled={isLogging}
+                        aria-invalid={
+                          fieldState.invalid &&
+                          fieldState.isTouched &&
+                          fieldState.isDirty
+                        }
                       />
                     </div>
                   </InputGroup>
@@ -122,13 +118,23 @@ export function LoginForm() {
 
             <Controller
               name="password"
-              control={loginForm.control}
+              control={form.control}
               render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <InputGroup className="border-none shadow-none rounded-none h-13 has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50">
+                <Field
+                  data-invalid={
+                    fieldState.invalid &&
+                    fieldState.isTouched &&
+                    fieldState.isDirty
+                  }
+                >
+                  <InputGroup className="rounded-b-md rounded-t-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect">
                     <InputGroupAddon>
                       <SquareAsterisk
-                        data-invalid={fieldState.invalid}
+                        data-invalid={
+                          fieldState.invalid &&
+                          fieldState.isTouched &&
+                          fieldState.isDirty
+                        }
                         strokeWidth={1.5}
                         className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 data-[invalid=true]:text-destructive"
                       />
@@ -145,11 +151,17 @@ export function LoginForm() {
                       <InputGroupInput
                         {...field}
                         id={field.name}
-                        aria-invalid={fieldState.invalid}
+                        aria-invalid={
+                          fieldState.invalid &&
+                          fieldState.isTouched &&
+                          fieldState.isDirty
+                        }
                         type={showPasswordField ? "text" : "password"}
+                        autoComplete="off"
                         placeholder="* * * * * *"
                         inputMode="text"
                         autoFocus={false}
+                        disabled={isLogging}
                       />
                     </div>
 

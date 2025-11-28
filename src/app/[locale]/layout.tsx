@@ -1,12 +1,12 @@
+import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { AuthProvider, useAuth } from "../context/AuthContext";
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { ReactNode } from "react";
 
-type Props = {
-  children: React.ReactNode;
-};
+type Props = { children: ReactNode };
 
-export const CustomLayout = ({ children }: Props) => {
+export default async function LocaleLayout({ children }: Props) {
   return (
     <ThemeProvider>
       <NextIntlClientProvider>
@@ -14,4 +14,4 @@ export const CustomLayout = ({ children }: Props) => {
       </NextIntlClientProvider>
     </ThemeProvider>
   );
-};
+}

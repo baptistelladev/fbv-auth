@@ -32,7 +32,9 @@ export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
       size={"sm"}
       asChild
       aria-label={ariaLabelOrTitle}
-      className={"opacity-100! min-h-0 rounded-full h-9 bg-neutral-800"}
+      className={
+        "opacity-100! min-h-0 rounded-full h-9 bg-neutral-800 hover:bg-neutral-800"
+      }
       title={ariaLabelOrTitle}
     >
       <Link href={href}>
