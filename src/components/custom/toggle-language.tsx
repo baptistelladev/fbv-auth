@@ -18,8 +18,6 @@ import { LanguageAsLocale, LanguageType } from "@/shared/types/language.type";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import z from "zod/v4";
-import { loadLocale } from "@/shared/utils/zod";
 
 // INTERFACE
 type Props = {
