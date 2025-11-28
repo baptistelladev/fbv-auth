@@ -13,7 +13,7 @@ export default function ForgotPasswordComp({ isLogging }: Props) {
   const t = useTranslations("LOGIN_PAGE");
 
   return isLogging ? (
-    <p className="self-end text-[11px]  text-green-anfitrion font-normal  hover:text-green-dark-anfitrion underline-offset-3 mt-3 opacity-50">
+    <p className="self-end text-[11px] cursor-not-allowed  text-green-anfitrion font-normal  hover:text-green-dark-anfitrion underline-offset-3 mt-3 opacity-50">
       {t("forgot_password")}
     </p>
   ) : (

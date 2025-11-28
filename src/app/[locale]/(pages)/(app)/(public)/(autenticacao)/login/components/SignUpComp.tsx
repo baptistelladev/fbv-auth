@@ -12,7 +12,7 @@ export default function SignUpComp({ isLogging }: Props) {
   const t = useTranslations("LOGIN_PAGE");
 
   return isLogging ? (
-    <p className="text-xs  font-normal  text-neutral-700 dark:text-neutral-100 text-center opacity-50 pointer-events-none">
+    <p className="text-xs cursor-not-allowed font-normal  text-neutral-700 dark:text-neutral-100 text-center opacity-50">
       {t("hasnt_account")}
       <span className=" text-green-anfitrion underline underline-offset-3 ml-1">
         {t("register")}
