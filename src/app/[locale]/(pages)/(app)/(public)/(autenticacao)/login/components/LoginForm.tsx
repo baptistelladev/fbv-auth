@@ -59,7 +59,11 @@ export function LoginForm() {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-sm">
       <div className="flex flex-col ">
-        <div className="rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ">
+        <div
+          className={`rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ${
+            isLogging && "cursor-not-allowed"
+          }`}
+        >
           <FieldGroup className="gap-0 w-full">
             <Controller
               name="email"
@@ -175,7 +179,7 @@ export function LoginForm() {
                                 : tg("show_password")
                             }
                             disabled={isLogging}
-                            className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1"
+                            className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1 "
                             size="icon-sm"
                             onClick={() => togglePassword()}
                           >

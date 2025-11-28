@@ -40,11 +40,11 @@ export function ToggleModeComp({ classNames }: Props) {
           )}
         >
           <Sun
-            className={`size-5 ${theme !== "dark" && "hidden"}`}
+            className={`size-4.5 ${theme !== "dark" && "hidden"}`}
             strokeWidth={1.2}
           />
           <Moon
-            className={`size-5 ${theme === "dark" && "hidden"}`}
+            className={`size-4.5 ${theme === "dark" && "hidden"}`}
             strokeWidth={1.2}
           />
         </Button>

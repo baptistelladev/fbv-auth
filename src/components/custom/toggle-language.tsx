@@ -72,7 +72,7 @@ export function ToggleLanguageComp({ classNames }: Props) {
                   classNames
                 )}
               >
-                <Globe strokeWidth={1} className="size-5" />
+                <Globe strokeWidth={1} className="size-4.5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
