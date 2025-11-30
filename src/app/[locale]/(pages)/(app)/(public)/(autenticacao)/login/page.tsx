@@ -1,9 +1,8 @@
 import { IconFrameComp } from "@/components/custom/icon-frame";
-import { LogIn } from "lucide-react";
-import { Metadata } from "next";
-import { useTranslations } from "next-intl";
-import { LoginForm } from "./components/LoginForm";
+import { LoginFormComp } from "@/components/forms/login-form";
 import SectionTitleNdeskComp from "@/components/custom/section-title-n-desc";
+import { LogIn } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 // META
@@ -43,7 +42,7 @@ export default function LoginPage() {
         </div>
 
         <div className="flex flex-col gap-3 pt-6 w-full max-w-xs">
-          <LoginForm />
+          <LoginFormComp />
         </div>
       </section>
     </main>

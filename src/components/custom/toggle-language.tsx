@@ -70,7 +70,7 @@ export function ToggleLanguageComp({ classNames }: Props) {
               aria-label={tg("language")}
               variant="outline"
               className={cn(
-                "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:data-[state=open]:bg-neutral-100! dark:data-[state=open]:text-neutral-700! data-[state=open]:bg-neutral-800! data-[state=open]:text-neutral-100! border-[0.5px]",
+                "rounded-full cursor-pointer  transition-none text-muted-foreground  hover:text-neutral-700 bg-transparent dark:bg-transparent hover:bg-transparent  dark:hover:bg-transparent dark:hover:text-neutral-100  dark:aria-expanded:bg-neutral-100! dark:aria-expanded:text-neutral-700! aria-expanded:bg-neutral-800! aria-expanded:text-neutral-100! border-[0.5px]",
                 classNames
               )}
             >

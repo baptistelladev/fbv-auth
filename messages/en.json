@@ -9,19 +9,28 @@
     "login": "Login",
     "logging_in": "Logging in",
     "forgot_password": "Forgot password?",
-    "input_email_placeholder": "user@example.com"
+    "screen_description": "Login screen"
+  },
+  "FORGOT_PASSWORD_PAGE": {
+    "page_title": "Account recovery",
+    "page_description": "Recover your account on anfitrion",
+    "section_title": "<b>Recover</b> your account",
+    "section_desc": "You will receive an email"
   },
   "GENERAL": {
     "show_password": "Show password",
     "hide_password": "Hide password",
     "theme": "Theme",
     "language": "Language",
-    "flag": "flag",
-    "email": "email",
-    "password": "password",
+    "email": "Email",
+    "password": "Password",
     "choose_language": "Choose a language",
     "redirect_not_authenticated": "Go to the login screen",
-    "redirect_authenticated": "Go to the main screen"
+    "redirect_authenticated": "Go to the main screen",
+    "send": "Send",
+    "sending": "Sending",
+    "input_email_placeholder": "user@example.com",
+    "go_to": "Go to"
   },
   "COMPONENTS": {
     "sonner": {

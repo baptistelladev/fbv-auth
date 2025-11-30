@@ -9,19 +9,28 @@
     "login": "Iniciar sesión",
     "logging_in": "Iniciando sesión",
     "forgot_password": "¿Olvidaste tu contraseña?",
-    "input_email_placeholder": "usuario@ejemplo.com"
+    "screen_description": "Pantalla de inicio de sesión"
+  },
+  "FORGOT_PASSWORD_PAGE": {
+    "page_title": "Recuperación de cuenta",
+    "page_description": "Recupere su cuenta en anfitrion",
+    "section_title": "<b>Recupere</b> su cuenta",
+    "section_desc": "Usted recibirá un correo electrónico"
   },
   "GENERAL": {
     "show_password": "Mostrar contraseña",
     "hide_password": "Ocultar contraseña",
     "theme": "Tema",
     "language": "Idioma",
-    "flag": "bandera",
-    "email": "correo electrónico",
-    "password": "contraseña",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
     "choose_language": "Elige un idioma",
     "redirect_not_authenticated": "Ir a la pantalla de inicio de sesión",
-    "redirect_authenticated": "Ir a la pantalla principal"
+    "redirect_authenticated": "Ir a la pantalla principal",
+    "send": "Enviar",
+    "sending": "Enviando",
+    "input_email_placeholder": "usuario@ejemplo.com",
+    "go_to": "Ir a"
   },
   "COMPONENTS": {
     "sonner": {

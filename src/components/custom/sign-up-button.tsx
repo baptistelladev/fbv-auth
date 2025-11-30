@@ -8,7 +8,7 @@ type Props = {
   isLogging: boolean;
 };
 
-export default function SignUpComp({ isLogging }: Props) {
+export default function SignUpButtonComp({ isLogging }: Props) {
   const t = useTranslations("LOGIN_PAGE");
 
   return isLogging ? (

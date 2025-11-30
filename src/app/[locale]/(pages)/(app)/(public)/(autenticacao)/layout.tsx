@@ -19,8 +19,11 @@ export default function LocaleLayout({ children }: Props) {
     <section className="authentication-layout-wrapper w-full flex flex-col-reverse md:flex-row h-auto md:h-screen md:overflow-hidden bg-linear-to-bt-effect">
       <div className="fixed-content-wrapper p-6 w-full md:w-[60%] bg-neutral-900 md:bg-transparent hidden md:block">
         <div className="w-full rounded-xl flex flex-col justify-between h-screen md:h-full bg-neutral-800  relative overflow-hidden">
-          <header className="w-full hidden md:block" aria-live="polite">
-            <AnfitrionLogoComp classNames="text-2xl mt-4 ml-1" href="/login" />
+          <header
+            className="w-full hidden pt-2 pl-1 md:block"
+            aria-live="polite"
+          >
+            <AnfitrionLogoComp classNames="text-2xl " href="/login" />
           </header>
         </div>
       </div>

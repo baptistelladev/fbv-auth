@@ -22,11 +22,11 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 import * as z from "zod";
-import { useLoginForm } from "../schemas/login-form.schema";
-import ForgotPasswordComp from "./ForgotPasswordComp";
-import SignUpComp from "./SignUpComp";
+import ForgotPasswordButtonComp from "@/components/custom/forgot-password-button";
+import SignUpButtonComp from "@/components/custom/sign-up-button";
+import { useLoginForm } from "@/hooks/forms/use-login-form";
 
-export function LoginForm() {
+export function LoginFormComp() {
   const { form, formSchema, formState } = useLoginForm();
 
   // TRADUÇÃO
@@ -89,10 +89,10 @@ export function LoginForm() {
                       />
                     </InputGroupAddon>
 
-                    <div className="flex flex-col justify-start items-start w-full">
+                    <div className="flex flex-col justify-start items-start w-full h-full">
                       <Label
                         htmlFor={field.name}
-                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 pt-2 -mb-3"
                       >
                         {tg("email")}
                       </Label>
@@ -102,10 +102,10 @@ export function LoginForm() {
                         {...field}
                         aria-required={true}
                         id={field.name}
-                        placeholder={`${t("input_email_placeholder")}`}
+                        placeholder={`${tg("input_email_placeholder")}`}
                         type="email"
                         inputMode="email"
-                        autoComplete="email"
+                        autoComplete="off"
                         autoFocus={false}
                         disabled={isLogging}
                         aria-invalid={
@@ -146,10 +146,10 @@ export function LoginForm() {
                       />
                     </InputGroupAddon>
 
-                    <div className="flex flex-col justify-start items-start w-full">
+                    <div className="flex flex-col justify-start items-start w-full h-full">
                       <Label
                         htmlFor={field.name}
-                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 -mb-1"
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 pt-2 -mb-3"
                       >
                         {tg("password")}
                       </Label>
@@ -208,7 +208,7 @@ export function LoginForm() {
           </FieldGroup>
         </div>
 
-        <ForgotPasswordComp isLogging={isLogging} />
+        <ForgotPasswordButtonComp isLogging={isLogging} />
 
         <Button
           type="submit"
@@ -218,7 +218,7 @@ export function LoginForm() {
           disabled={isLogging || !formState.isValid}
           className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
         >
-          <motion.button whileTap={{ scale: 0.95 }} className="">
+          <motion.button whileTap={{ scale: 0.95 }}>
             {isLogging ? (
               <>
                 <Spinner /> {t("logging_in")}
@@ -231,7 +231,7 @@ export function LoginForm() {
           </motion.button>
         </Button>
 
-        <SignUpComp isLogging={isLogging} />
+        <SignUpButtonComp isLogging={isLogging} />
       </div>
     </form>
   );

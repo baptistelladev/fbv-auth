@@ -8,7 +8,7 @@ type Props = {
   isLogging: boolean;
 };
 
-export default function ForgotPasswordComp({ isLogging }: Props) {
+export default function ForgotPasswordButtonComp({ isLogging }: Props) {
   // TRADUÇÃO
   const t = useTranslations("LOGIN_PAGE");
 
