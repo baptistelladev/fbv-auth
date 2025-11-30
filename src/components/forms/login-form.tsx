@@ -25,6 +25,7 @@ import * as z from "zod";
 import ForgotPasswordButtonComp from "@/components/custom/forgot-password-button";
 import SignUpButtonComp from "@/components/custom/sign-up-button";
 import { useLoginForm } from "@/hooks/forms/use-login-form";
+import InputErrorComp from "../custom/input-error";
 
 export function LoginFormComp() {
   const { form, formSchema, formState } = useLoginForm();
@@ -54,6 +55,11 @@ export function LoginFormComp() {
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLogging(true);
     setShowPasswordField(false);
+
+    setTimeout(() => {
+      console.log(data);
+      setIsLogging(false);
+    }, 2000);
   }
 
   return (
@@ -79,26 +85,21 @@ export function LoginFormComp() {
                   <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
                     <InputGroupAddon>
                       <AtSign
-                        data-invalid={
-                          fieldState.invalid &&
-                          fieldState.isTouched &&
-                          fieldState.isDirty
-                        }
                         strokeWidth={1.7}
-                        className="data-[invalid=true]:text-destructive size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 "
+                        className="size-4 text-neutral-400"
                       />
                     </InputGroupAddon>
 
                     <div className="flex flex-col justify-start items-start w-full h-full">
                       <Label
                         htmlFor={field.name}
-                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 pt-2 -mb-3"
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-400 pt-2 -mb-3"
                       >
                         {tg("email")}
                       </Label>
 
                       <InputGroupInput
-                        className="text-sm"
+                        className="text-sm lowercase"
                         {...field}
                         aria-required={true}
                         id={field.name}
@@ -115,6 +116,14 @@ export function LoginFormComp() {
                         }
                       />
                     </div>
+
+                    <InputErrorComp
+                      showErrorWhen={
+                        fieldState.invalid &&
+                        fieldState.isTouched &&
+                        fieldState.isDirty
+                      }
+                    />
                   </InputGroup>
                 </Field>
               )}
@@ -136,20 +145,15 @@ export function LoginFormComp() {
                   <InputGroup className="rounded-b-md rounded-t-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent!">
                     <InputGroupAddon>
                       <SquareAsterisk
-                        data-invalid={
-                          fieldState.invalid &&
-                          fieldState.isTouched &&
-                          fieldState.isDirty
-                        }
                         strokeWidth={1.5}
-                        className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 data-[invalid=true]:text-destructive"
+                        className="size-4 text-neutral-400"
                       />
                     </InputGroupAddon>
 
                     <div className="flex flex-col justify-start items-start w-full h-full">
                       <Label
                         htmlFor={field.name}
-                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 pt-2 -mb-3"
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-400 pt-2 -mb-3"
                       >
                         {tg("password")}
                       </Label>
@@ -173,7 +177,7 @@ export function LoginFormComp() {
                       />
                     </div>
 
-                    <InputGroupAddon align="inline-end" className="mr-0! ">
+                    <InputGroupAddon align="inline-end" className="mr-0!">
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <InputGroupButton
@@ -201,6 +205,14 @@ export function LoginFormComp() {
                         </TooltipContent>
                       </Tooltip>
                     </InputGroupAddon>
+
+                    <InputErrorComp
+                      showErrorWhen={
+                        fieldState.invalid &&
+                        fieldState.isTouched &&
+                        fieldState.isDirty
+                      }
+                    />
                   </InputGroup>
                 </Field>
               )}

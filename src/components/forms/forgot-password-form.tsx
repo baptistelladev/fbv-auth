@@ -10,19 +10,19 @@ import {
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { useForgotPassword } from "@/hooks/forms/use-forgot-password-form";
-import { AtSign, Send } from "lucide-react";
+import { AtSign, CircleAlert, Send, TriangleAlert } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 import * as z from "zod";
+import InputErrorComp from "../custom/input-error";
 
 export function ForgotPasswordComp() {
   const { form, formSchema, formState } = useForgotPassword();
 
   // TRADUÇÃO
-  const t = useTranslations("FORGOT_PASSWORD_PAGE");
   const tg = useTranslations("GENERAL");
   const tl = useTranslations("LOGIN_PAGE");
 
@@ -37,6 +37,11 @@ export function ForgotPasswordComp() {
    */
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsRecovering(true);
+
+    setTimeout(() => {
+      console.log(data);
+      setIsRecovering(false);
+    }, 2000);
   }
 
   return (
@@ -62,26 +67,21 @@ export function ForgotPasswordComp() {
                   <InputGroup className="rounded-md border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
                     <InputGroupAddon>
                       <AtSign
-                        data-invalid={
-                          fieldState.invalid &&
-                          fieldState.isTouched &&
-                          fieldState.isDirty
-                        }
                         strokeWidth={1.7}
-                        className="data-[invalid=true]:text-destructive size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 "
+                        className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 "
                       />
                     </InputGroupAddon>
 
                     <div className="flex flex-col justify-start items-start w-full h-full">
                       <Label
                         htmlFor={field.name}
-                        className="pl-3 text-[8px] uppercase font-normal text-neutral-700 dark:text-neutral-100 pt-2 -mb-3"
+                        className="pl-3 text-[8px] uppercase font-normal text-neutral-400  pt-2 -mb-3"
                       >
                         {tg("email")}
                       </Label>
 
                       <InputGroupInput
-                        className="text-sm"
+                        className="text-sm lowercase"
                         {...field}
                         aria-required={true}
                         id={field.name}
@@ -98,6 +98,14 @@ export function ForgotPasswordComp() {
                         }
                       />
                     </div>
+
+                    <InputErrorComp
+                      showErrorWhen={
+                        fieldState.invalid &&
+                        fieldState.isTouched &&
+                        fieldState.isDirty
+                      }
+                    />
                   </InputGroup>
                 </Field>
               )}
