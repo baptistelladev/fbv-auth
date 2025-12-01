@@ -42,12 +42,14 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
+  /* CUSTOM FONTS */
   --font-baloo: var(--font-baloo-2);
   --font-nunito: var(--font-nunito);
 
-  --color-green-anfitrion: #769834;
-  --color-green-dark-anfitrion: #547d0e;
-  --color-online: #9dfd38;
+  /* CUSTOM COLORS TO USE IN TAILWIND */
+  --color-green-main: #769834;
+  --color-green-dark-main: #547d0e;
+  --color-main-online: #9dfd38;
 
   --color-focus: var(--focus);
   --color-focus-shadow: var(--focus-shadow);
@@ -87,20 +89,12 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --lemon: #cbfd03;
-  --online: #9dfd38;
-  --neon: #01fe03;
-
-  --green: #769834;
-  --green-dark: #547d0e;
-  --green-resident: #4d5935;
+  /* CUSTOM COLORS TO USO IN TAILWIND */
+  --green-main: #769834;
+  --green-dark-main: #547d0e;
 
   --focus: rgba(234, 100, 217, 0.5);
   --focus-shadow: rgba(234, 100, 217, 0.1);
-
-  .bg-linear-to-bt-effect {
-    @apply bg-linear-to-t from-neutral-100 to-white;
-  }
 }
 
 .dark {
@@ -135,7 +129,31 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
 
+@layer base {
+  /* DEFAULT SHAD CN */
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground/75;
+  }
+
+  /* MÍNIMO DE LARGURA */
+  html,
+  body {
+    min-width: 345px;
+  }
+}
+
+/* GLOBAL */
+.bg-linear-to-bt-effect {
+  @apply bg-linear-to-t from-neutral-100 to-white;
+}
+
+/* DARK MODE */
+.dark {
   .bg-linear-to-bt-effect {
     @apply bg-linear-to-t from-neutral-900 to-neutral-800;
   }
@@ -145,84 +163,61 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground/75;
-  }
+/* REMOVENDO APARÊNCIA DO CHECKBOX SHAD CN */
+button[role="checkbox"] {
+  --tw-ring-shadow: 0 0 #0000 !important;
+  --tw-ring-color: transparent !important;
+}
 
-  .disable-link {
-    @apply opacity-50 pointer-events-none;
-  }
+/* FOCUS CUSTOMIZADO EM ELEMENTOS: OUTLINE */
+a,
+button,
+[data-slot="button"],
+[data-slot="dropdown-menu-trigger"] {
+  @apply focus-visible:outline-focus focus-visible:outline-1 focus-visible:shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
+}
 
-  a,
-  button,
-  [data-slot="button"],
-  [data-slot="dropdown-menu-trigger"] {
-    @apply focus-visible:outline-focus focus-visible:outline-1 focus-visible:shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
-  }
+/* FOCUS CUSTOMIZADO NOS INPUTS: BORDER */
+.focus-anfitrion-effect:has(input:focus-visible),
+button[role="checkbox"] {
+  @apply border-focus! border! shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
+}
 
-  .focus-anfitrion-effect:has(input:focus-visible) {
-    @apply border-focus! shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
-  }
+/* EFEITO NO ÍCONE, NÃO QUIS FAZER NO TAILWIND (MAS VOCÊ PODE USAR O GEPETO PARA ISSO */
+.icon-frame-effect {
+  position: relative;
 
-  button[role="checkbox"] {
-    --tw-ring-shadow: 0 0 #0000 !important;
-    --tw-ring-color: transparent !important;
-
-    @apply focus-visible:outline-focus focus-visible:outline-1 focus-visible:shadow-[0_0_0_4px_rgba(234,100,217,0.1)]! focus-visible:border-focus!;
-  }
-
-  .color-linear {
-    background-image: linear-gradient(0.351turn, #769834 43.71%, #547d0e 58.8%);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  html,
-  body {
-    min-width: 345px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    bottom: -2px;
+    background: linear-gradient(to top, #fff 40%, #fff 40%, transparent);
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 100%;
   }
 
-  .icon-frame-effect {
-    position: relative;
-
+  &.dark {
     &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      bottom: -2px;
-      background: linear-gradient(to top, #fff 40%, #fff 40%, transparent);
-      pointer-events: none;
-      z-index: 5;
-      border-radius: 100%;
-    }
-
-    &.dark {
-      &::before {
-        background: linear-gradient(
-          to top,
-          #202020 40%,
-          #202020 40%,
-          transparent
-        );
-      }
+      background: linear-gradient(
+        to top,
+        #202020 40%,
+        #202020 40%,
+        transparent
+      );
     }
   }
+}
 
-  .main-btn {
-    @apply bg-linear-150 from-green-anfitrion to-green-dark-anfitrion text-white;
+/* PARA SOBREPOR UM LINEAR, SOMENTE OUTRO LINEAR */
+.main-btn {
+  @apply bg-linear-150 from-green-main to-green-dark-main text-white;
 
-    &:hover {
-      @apply bg-linear-150 from-green-dark-anfitrion to-green-dark-anfitrion;
-    }
+  &:hover {
+    @apply bg-linear-150 from-green-dark-main to-green-dark-main;
   }
 }

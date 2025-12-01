@@ -16,13 +16,12 @@ export default function InputErrorComp({ showErrorWhen, classNames }: Props) {
   return (
     showErrorWhen && (
       <InputGroupAddon
+        aria-hidden={true}
         align={"inline-end"}
         className={cn("inline-end", classNames)}
       >
         <TriangleAlert
           role="img"
-          aria-label={tg("invalid_information")}
-          data-invalid={showErrorWhen}
           strokeWidth={1.5}
           className="text-destructive! size-4"
         />

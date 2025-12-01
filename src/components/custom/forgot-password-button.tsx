@@ -14,7 +14,7 @@ export default function ForgotPasswordButtonComp({ isLogging }: Props) {
   const t = useTranslations("LOGIN_PAGE");
 
   return isLogging ? (
-    <p className="self-end text-[11px] cursor-not-allowed  text-green-anfitrion font-normal  hover:text-green-dark-anfitrion underline-offset-3 mt-3 opacity-50">
+    <p className="self-end text-[11px] cursor-not-allowed  text-green-main font-normal  hover:text-green-dark-main underline-offset-3 mt-3 opacity-50">
       {t("forgot_password")}
     </p>
   ) : (
@@ -22,7 +22,7 @@ export default function ForgotPasswordButtonComp({ isLogging }: Props) {
       asChild
       title={t("forgot_password")}
       disabled={isLogging}
-      className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:opacity-50 cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
+      className="self-end text-[11px] m-0 p-0 text-green-main font-normal  hover:underline hover:opacity-50 cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
       variant="link"
       type="button"
     >
@@ -30,7 +30,7 @@ export default function ForgotPasswordButtonComp({ isLogging }: Props) {
         aria-disabled={isLogging}
         href="/esqueci-minha-senha"
         className={` transition-opacity transition-300 ${
-          isLogging && "disable-link"
+          isLogging && "opacity-50 pointer-events-none"
         }`}
       >
         {t("forgot_password")}

@@ -23,7 +23,9 @@
     "section_title": "<b>Create</b> an account",
     "section_desc": "Enter your information",
     "already_has_account": "Already have an account?",
-    "access": "Access"
+    "access": "Access",
+    "terms_label": "Terms and Conditions of Use",
+    "terms_text": "By creating an account on our website you automatically agree to the"
   },
   "GENERAL": {
     "show_password": "Show password",
@@ -50,7 +52,8 @@
       "at_least_one_lowercase_letter": "At least 1 lowercase letter",
       "at_least_one_special_character": "At least 1 special character (@#%*)",
       "at_least_six_characters": "At least 6 characters"
-    }
+    },
+    "close": "Close"
   },
   "COMPONENTS": {
     "sonner": {
@@ -60,6 +63,23 @@
       "notifications": {
         "aria-label": "Notifications",
         "close-aria-label": "Close notifications"
+      }
+    },
+    "dialogs": {
+      "terms": {
+        "title": "From here on, it’s up to you",
+        "description": "Accessibility description",
+        "content": "Hello @dev. My name is <link>{name}</link>, I’ve been a Front-end developer for over 7 years and I created this authentication template as a way to give back to the dev community."
+      },
+      "forgot_password": {
+        "title": "Account recovery",
+        "description": "Accessibility description",
+        "content": "Here you will inform that a password reset link has been sent to the user. Check your inbox and spam folder."
+      },
+      "account_created": {
+        "title": "Account creation",
+        "description": "Accessibility description",
+        "content": "Here you will inform that a password reset link has been sent to the user. Check your inbox and spam folder."
       }
     }
   }

@@ -16,7 +16,7 @@ export default function SignUpButtonComp({ isLogging }: Props) {
   return isLogging ? (
     <p className="text-xs cursor-not-allowed font-normal  text-neutral-700 dark:text-neutral-100 text-center opacity-50">
       {t("hasnt_account")}
-      <span className=" text-green-anfitrion underline underline-offset-3 ml-1">
+      <span className=" text-green-main underline underline-offset-3 ml-1">
         {t("register")}
       </span>
     </p>
@@ -33,11 +33,11 @@ export default function SignUpButtonComp({ isLogging }: Props) {
         aria-disabled={isLogging}
         href={"/criar-conta"}
         className={` transition-opacity transition-300 ${
-          isLogging && "disable-link"
+          isLogging && "opacity-50 pointer-events-none"
         }`}
       >
         {t("hasnt_account")}
-        <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer -ml-1">
+        <span className=" text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer -ml-1">
           {t("register")}
         </span>
       </Link>

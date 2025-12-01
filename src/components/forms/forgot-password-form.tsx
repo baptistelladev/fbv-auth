@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -10,7 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { useForgotPassword } from "@/hooks/forms/use-forgot-password-form";
-import { AtSign, Send } from "lucide-react";
+import { AtSign, Divide, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -18,6 +18,8 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import * as z from "zod";
 import InputErrorComp from "../custom/input-error";
+import { Dialog, DialogContent } from "../ui/dialog";
+import ForgotPasswordAlertComp from "../alerts/forgot-password";
 
 export function ForgotPasswordComp() {
   // HOOKS CUSTOMIZADOS
@@ -29,6 +31,7 @@ export function ForgotPasswordComp() {
 
   // STATES
   const [isRecovering, setIsRecovering] = useState(false);
+  const [showModalLinkHasSent, setShowModalLinkHasSent] = useState(false);
 
   // FUNÇÕES
   /**
@@ -41,7 +44,9 @@ export function ForgotPasswordComp() {
     setTimeout(() => {
       console.log(data);
       setIsRecovering(false);
-    }, 2000);
+      form.reset();
+      setShowModalLinkHasSent(true);
+    }, 312312312);
   }
 
   return (
@@ -50,16 +55,14 @@ export function ForgotPasswordComp() {
       className="space-y-4 max-w-sm  mb-6"
     >
       <div className="flex flex-col ">
-        <div
-          className={`rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ${
-            isRecovering && "cursor-not-allowed"
-          }`}
+        <FieldGroup
+          className={`gap-0 w-full ${isRecovering && "cursor-not-allowed"}`}
         >
-          <FieldGroup className="gap-0 w-full">
-            <Controller
-              name="email"
-              control={form.control}
-              render={({ field, fieldState }) => (
+          <Controller
+            name="email"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <div>
                 <Field
                   data-invalid={
                     fieldState.invalid &&
@@ -67,7 +70,7 @@ export function ForgotPasswordComp() {
                     fieldState.isDirty
                   }
                 >
-                  <InputGroup className="rounded-md border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
+                  <InputGroup className="has-[[data-slot][aria-invalid=true]]:border-tranparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect  rounded-md shadow border-neutral-200 dark:border-neutral-700 dark:border-[0.5px]">
                     <InputGroupAddon aria-hidden={true}>
                       <AtSign
                         strokeWidth={1.7}
@@ -91,7 +94,7 @@ export function ForgotPasswordComp() {
                         placeholder={`${tg("input_email_placeholder")}`}
                         type="email"
                         inputMode="email"
-                        autoComplete="off"
+                        autoComplete="email"
                         autoFocus={false}
                         disabled={isRecovering}
                         aria-invalid={
@@ -99,8 +102,15 @@ export function ForgotPasswordComp() {
                           fieldState.isTouched &&
                           fieldState.isDirty
                         }
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       showErrorWhen={
@@ -111,10 +121,10 @@ export function ForgotPasswordComp() {
                     />
                   </InputGroup>
                 </Field>
-              )}
-            />
-          </FieldGroup>
-        </div>
+              </div>
+            )}
+          />
+        </FieldGroup>
 
         <Button
           type="submit"
@@ -149,12 +159,22 @@ export function ForgotPasswordComp() {
             className={` transition-opacity transition-300`}
           >
             {tg("go_to")}
-            <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer -ml-1 lower-case">
+            <span className=" text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer -ml-1 lower-case">
               {tl("screen_description")}
             </span>
           </Link>
         </Button>
       </div>
+
+      {/** DIALOG */}
+      <Dialog
+        open={showModalLinkHasSent}
+        onOpenChange={(val) => setShowModalLinkHasSent(val)}
+      >
+        <DialogContent>
+          <ForgotPasswordAlertComp />
+        </DialogContent>
+      </Dialog>
     </form>
   );
 }

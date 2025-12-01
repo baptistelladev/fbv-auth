@@ -3,7 +3,7 @@
 import ForgotPasswordButtonComp from "@/components/custom/forgot-password-button";
 import SignUpButtonComp from "@/components/custom/sign-up-button";
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -111,7 +111,7 @@ export function LoginFormComp() {
                         placeholder={`${tg("input_email_placeholder")}`}
                         type="email"
                         inputMode="email"
-                        autoComplete="off"
+                        autoComplete="email"
                         autoFocus={false}
                         disabled={isLogging}
                         aria-invalid={
@@ -119,8 +119,15 @@ export function LoginFormComp() {
                           fieldState.isTouched &&
                           fieldState.isDirty
                         }
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       showErrorWhen={
@@ -179,6 +186,9 @@ export function LoginFormComp() {
                         inputMode="text"
                         autoFocus={false}
                         disabled={isLogging}
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
 
@@ -210,6 +220,10 @@ export function LoginFormComp() {
                         </TooltipContent>
                       </Tooltip>
                     </InputGroupAddon>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       showErrorWhen={

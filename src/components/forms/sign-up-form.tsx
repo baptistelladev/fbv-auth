@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -40,6 +40,7 @@ import TermsComp from "../alerts/terms";
 import InputErrorComp from "../custom/input-error";
 import { Checkbox } from "../ui/checkbox";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import PasswordRulesListComp from "../custom/password-rules-list";
 
 export function SignUpFormComp() {
   // HOOKS
@@ -172,8 +173,15 @@ export function SignUpFormComp() {
                           fieldState.isTouched &&
                           fieldState.isDirty
                         }
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       showErrorWhen={
@@ -224,7 +232,7 @@ export function SignUpFormComp() {
                         placeholder={`${tg("input_email_placeholder")}`}
                         type="email"
                         inputMode="email"
-                        autoComplete="off"
+                        autoComplete="email"
                         autoFocus={false}
                         disabled={isSending}
                         aria-invalid={
@@ -232,8 +240,15 @@ export function SignUpFormComp() {
                           fieldState.isTouched &&
                           fieldState.isDirty
                         }
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       showErrorWhen={
@@ -296,8 +311,15 @@ export function SignUpFormComp() {
                         inputMode="text"
                         autoFocus={false}
                         disabled={isSending}
+                        aria-describedby={
+                          fieldState.invalid ? `${field.name}-error` : undefined
+                        }
                       />
                     </div>
+
+                    <FieldError id={`${field.name}-error`} className="sr-only">
+                      {fieldState.error?.message}
+                    </FieldError>
 
                     <InputErrorComp
                       classNames="pr-1"
@@ -343,29 +365,7 @@ export function SignUpFormComp() {
           </FieldGroup>
         </div>
 
-        <ul className="w-full py-4">
-          {passwordRules.map((rule) => (
-            <li
-              className="text-xs text-neutral-700 dark:text-neutral-100 flex items-center justify-start font-light not-last:mb-1"
-              key={rule.text}
-            >
-              <span
-                className={`rounded-full size-3 text-white flex items-center justify-center mr-2 transition-all duration-300 ${
-                  rule.isValid
-                    ? "bg-green-anfitrion"
-                    : "bg-neutral-400 dark:bg-neutral-700 dark:text-neutral-400"
-                }`}
-              >
-                {rule.isValid ? (
-                  <Check size={8} strokeWidth={2.5} />
-                ) : (
-                  <X size={8} strokeWidth={2.5} />
-                )}
-              </span>
-              {rule.text}
-            </li>
-          ))}
-        </ul>
+        <PasswordRulesListComp passwordRules={passwordRules} />
 
         <FieldGroup className="gap-0 w-full bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md">
           <Controller
@@ -393,18 +393,22 @@ export function SignUpFormComp() {
                       fieldState.isTouched &&
                       fieldState.isDirty
                     }
-                    className="bg-white aria-checked:bg-green-anfitrion! aria-checked:border-green-anfitrion! data-[state=checked]:text-white!"
+                    className="bg-white aria-checked:bg-green-main! aria-checked:border-green-anfitrion! data-[state=checked]:text-white!"
                   />
 
                   <div className="grid gap-2">
+                    <Label htmlFor={field.name} className="text-xs">
+                      {t("terms_label")}
+                    </Label>
+
                     <p className="text-muted-foreground text-xs dark:text-neutral-100">
-                      Ao criar uma conta no nosso site você automaticamente está
-                      concordando com{" "}
+                      {t("terms_text")}
                       <Dialog>
-                        <DialogTrigger>
-                          <span className="text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer lower-case hover:opacity-50 transition-opacity duration-300">
-                            termos e condições de uso
-                          </span>
+                        <DialogTrigger
+                          className="text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer lower-case hover:opacity-50 transition-opacity duration-300"
+                          title={t("terms_label")}
+                        >
+                          {t("terms_label")}
                         </DialogTrigger>
                         <DialogContent>
                           <TermsComp />
@@ -451,13 +455,14 @@ export function SignUpFormComp() {
             className={` transition-opacity transition-300`}
           >
             {t("already_has_account")}
-            <span className=" text-green-anfitrion group-hover:text-green-dark-anfitrion underline underline-offset-3 cursor-pointer -ml-1 lower-case">
+            <span className=" text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer -ml-1 lower-case">
               {t("access")}
             </span>
           </Link>
         </Button>
       </div>
 
+      {/** DIALOG */}
       <Dialog
         open={showModalAccountCreated}
         onOpenChange={(val) => setShowModalAccountCreated(val)}

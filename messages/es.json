@@ -23,7 +23,9 @@
     "section_title": "<b>Registre</b> una cuenta",
     "section_desc": "Informe sus datos",
     "already_has_account": "¿Ya tiene una cuenta?",
-    "access": "Acceder"
+    "access": "Acceder",
+    "terms_label": "Términos y Condiciones de Uso",
+    "terms_text": "Al crear una cuenta en nuestro sitio web aceptas automáticamente los"
   },
   "GENERAL": {
     "show_password": "Mostrar contraseña",
@@ -50,7 +52,8 @@
       "at_least_one_lowercase_letter": "Al menos 1 letra minúscula",
       "at_least_one_special_character": "Al menos 1 carácter especial (@#%*)",
       "at_least_six_characters": "Al menos 6 caracteres"
-    }
+    },
+    "close": "Cerrar"
   },
   "COMPONENTS": {
     "sonner": {
@@ -61,6 +64,23 @@
       "notifications": {
         "aria-label": "Notificaciones",
         "close-aria-label": "Cerrar notificaciones"
+      }
+    },
+    "dialogs": {
+      "terms": {
+        "title": "A partir de aquí depende de ti",
+        "description": "Descripción de accesibilidad",
+        "content": "Hola @dev. Mi nombre es <link>{name}</link>, soy desarrollador Front-end desde hace más de 7 años y creé esta plantilla de autenticación como una forma de retribuir a la comunidad dev."
+      },
+      "forgot_password": {
+        "title": "Recuperación de cuenta",
+        "description": "Descripción de accesibilidad",
+        "content": "Aquí indicarás que enviaste un enlace de restablecimiento de contraseña al usuario. Revisa tu bandeja de entrada y carpeta de spam."
+      },
+      "account_created": {
+        "title": "Creación de cuenta",
+        "description": "Descripción de accesibilidad",
+        "content": "Aquí indicarás que enviaste un enlace de restablecimiento de contraseña al usuario. Revisa tu bandeja de entrada y carpeta de spam."
       }
     }
   }

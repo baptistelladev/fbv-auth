@@ -1,4 +1,6 @@
+import { MailSearch } from "lucide-react";
 import Link from "next/link";
+import { IconFrameComp } from "../custom/icon-frame";
 import { Button } from "../ui/button";
 import {
   DialogClose,
@@ -7,12 +9,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { IconFrameComp } from "../custom/icon-frame";
-import { UserRoundPlus } from "lucide-react";
+
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
-export default function AccountCreatedComp() {
+export default function ForgotPasswordAlertComp() {
   // HOOKS
   const tc = useTranslations("COMPONENTS.dialogs");
   const tg = useTranslations("GENERAL");
@@ -31,22 +32,22 @@ export default function AccountCreatedComp() {
       <DialogHeader>
         <div className="flex justify-center items-center">
           <IconFrameComp>
-            <UserRoundPlus
+            <MailSearch
               strokeWidth={1.2}
               className="text-muted-foreground size-5 md:size-6 -mt-1 -mr-1"
             />
           </IconFrameComp>
         </div>
         <DialogTitle className="font-nunito font-bold text-2xl text-center">
-          {tc("account_created.title")}
+          {tc("forgot_password.title")}
         </DialogTitle>
         <DialogDescription className="sr-only">
-          {tc("account_created.description")}
+          {tc("forgot_password.description")}
         </DialogDescription>
       </DialogHeader>
       <div className="flex items-center gap-2 pt-4 pb-6 text-center">
         <p className="text-sm text-neutral-700 font-light">
-          {tc("account_created.content")}
+          {tc("forgot_password.content")}
         </p>
       </div>
       <DialogFooter className="sm:justify-start">

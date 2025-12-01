@@ -13,7 +13,7 @@ export default function CustomToasterComp() {
         className:
           "bg-white! dark:bg-neutral-800! text-neutral-700! dark:text-neutral-100! border-neutral-200! dark:border-neutral-600! dark:border-[0.5px]! shadow-sm! gap-2!",
         classNames: {
-          title: "font-nunito text-green-anfitrion! font-bold!",
+          title: "font-nunito text-green-main! font-bold!",
           description: "text-muted-foreground! text-xs mr-2!",
           icon: "text-neutral-700! dark:text-neutral-100!",
           closeButton:

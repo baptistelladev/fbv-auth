@@ -44,7 +44,7 @@ export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
             classNames
           )}
         >
-          anfitri<span className="text-green-anfitrion font-bold">on</span>
+          anfitri<span className="text-green-main font-bold">on</span>
         </span>
       </Link>
     </Button>

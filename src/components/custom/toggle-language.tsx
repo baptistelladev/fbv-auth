@@ -107,7 +107,7 @@ export function ToggleLanguageComp({ classNames }: Props) {
           >
             {lang.value === locale && (
               <span
-                className="size-1.5 bg-green-anfitrion rounded-full"
+                className="size-1.5 bg-green-main rounded-full"
                 aria-hidden="true"
               ></span>
             )}
