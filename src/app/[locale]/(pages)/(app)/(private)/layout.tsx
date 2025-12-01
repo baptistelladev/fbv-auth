@@ -1,9 +1,9 @@
+import AuthenticationSidebar from "@/components/custom/AuthenticationSidebar";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import AuthenticationSidebar from "../(public)/(autenticacao)/login/components/AuthenticationSidebar";
 
 export default function PrivateLayout({
   children,
