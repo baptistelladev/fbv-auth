@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
-import React from "react";
 import { Toaster } from "sonner";
 
 export default function CustomToasterComp() {
+  // HOOKS
   const tc = useTranslations("COMPONENTS");
 
   return (

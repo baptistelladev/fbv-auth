@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
+// INTERFACE
 type Props = {
   isLogging: boolean;
 };
@@ -21,7 +22,7 @@ export default function ForgotPasswordButtonComp({ isLogging }: Props) {
       asChild
       title={t("forgot_password")}
       disabled={isLogging}
-      className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:text-green-dark-anfitrion cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
+      className="self-end text-[11px] m-0 p-0 text-green-anfitrion font-normal  hover:underline hover:opacity-50 cursor-pointer underline-offset-3 h-auto min-h-0 mt-3"
       variant="link"
       type="button"
     >

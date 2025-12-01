@@ -168,6 +168,13 @@
     @apply border-focus! shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
   }
 
+  button[role="checkbox"] {
+    --tw-ring-shadow: 0 0 #0000 !important;
+    --tw-ring-color: transparent !important;
+
+    @apply focus-visible:outline-focus focus-visible:outline-1 focus-visible:shadow-[0_0_0_4px_rgba(234,100,217,0.1)]! focus-visible:border-focus!;
+  }
+
   .color-linear {
     background-image: linear-gradient(0.351turn, #769834 43.71%, #547d0e 58.8%);
     background-size: 100%;

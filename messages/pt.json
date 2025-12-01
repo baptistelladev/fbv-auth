@@ -17,6 +17,14 @@
     "section_title": "<b>Recupere</b> sua conta",
     "section_desc": "Você receberá um e-mail"
   },
+  "SIGN_UP_PAGE": {
+    "page_title": "Cadastro de conta",
+    "page_description": "Cadastre uma nova conta e acesse o melhor da região da Baixada Santista",
+    "section_title": "<b>Cadastre</b> uma conta",
+    "section_desc": "Informe seus dados",
+    "already_has_account": "Já possui uma conta?",
+    "access": "Acesse"
+  },
   "GENERAL": {
     "show_password": "Mostrar senha",
     "hide_password": "Esconder senha",
@@ -30,7 +38,19 @@
     "send": "Enviar",
     "sending": "Enviando",
     "input_email_placeholder": "usuario@exemplo.com",
-    "go_to": "Ir para"
+    "go_to": "Ir para",
+    "invalid_information": "Informação inválida",
+    "first_name": "Primeiro nome",
+    "input_first_name_placeholder": "Felipe",
+    "register": "Cadastrar",
+    "registering": "Cadastrando",
+    "password_validation": {
+      "at_least_one_number": "Pelo menos 1 número",
+      "at_least_one_uppercase_letter": "Pelo menos 1 letra maiúscula",
+      "at_least_one_lowercase_letter": "Pelo menos 1 letra minúscula",
+      "at_least_one_special_character": "Pelo menos 1 caractere especial (@#%*)",
+      "at_least_six_characters": "Pelo menos 6 caracteres"
+    }
   },
   "COMPONENTS": {
     "sonner": {

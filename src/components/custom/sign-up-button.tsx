@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
+// INTERFACE
 type Props = {
   isLogging: boolean;
 };
 
 export default function SignUpButtonComp({ isLogging }: Props) {
+  // HOOKS
   const t = useTranslations("LOGIN_PAGE");
 
   return isLogging ? (

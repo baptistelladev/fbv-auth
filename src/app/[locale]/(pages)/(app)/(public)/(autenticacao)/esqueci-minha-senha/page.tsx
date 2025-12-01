@@ -1,10 +1,9 @@
 import { IconFrameComp } from "@/components/custom/icon-frame";
-import { LoginFormComp } from "@/components/forms/login-form";
 import SectionTitleNdeskComp from "@/components/custom/section-title-n-desc";
-import { AtSign, LogIn } from "lucide-react";
+import { ForgotPasswordComp } from "@/components/forms/forgot-password-form";
+import { MailSearch } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { ForgotPasswordComp } from "@/components/forms/forgot-password-form";
 
 // META
 export async function generateMetadata() {
@@ -22,12 +21,12 @@ export default function EsqueciMinhaSenhaPage() {
 
   return (
     <main
-      aria-labelledby={"login-form-title"}
-      className="login-page-wrapper w-full"
+      aria-labelledby={"forgot-password-form-title"}
+      className="forgot-password-page-wrapper w-full"
     >
       <section className="max-w-md m-auto flex items-center justify-center flex-col">
         <IconFrameComp>
-          <AtSign
+          <MailSearch
             strokeWidth={1.2}
             className="text-muted-foreground size-5 md:size-6"
           />

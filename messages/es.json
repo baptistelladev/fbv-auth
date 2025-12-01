@@ -17,6 +17,14 @@
     "section_title": "<b>Recupere</b> su cuenta",
     "section_desc": "Usted recibirá un correo electrónico"
   },
+  "SIGN_UP_PAGE": {
+    "page_title": "Registro de cuenta",
+    "page_description": "Registre una nueva cuenta y acceda a lo mejor de la región de la Baixada Santista",
+    "section_title": "<b>Registre</b> una cuenta",
+    "section_desc": "Informe sus datos",
+    "already_has_account": "¿Ya tiene una cuenta?",
+    "access": "Acceder"
+  },
   "GENERAL": {
     "show_password": "Mostrar contraseña",
     "hide_password": "Ocultar contraseña",
@@ -30,7 +38,19 @@
     "send": "Enviar",
     "sending": "Enviando",
     "input_email_placeholder": "usuario@ejemplo.com",
-    "go_to": "Ir a"
+    "go_to": "Ir a",
+    "invalid_information": "Información inválida",
+    "first_name": "Nombre",
+    "input_first_name_placeholder": "Alejandro",
+    "register": "Registrar",
+    "registering": "Registrando",
+    "password_validation": {
+      "at_least_one_number": "Al menos 1 número",
+      "at_least_one_uppercase_letter": "Al menos 1 letra mayúscula",
+      "at_least_one_lowercase_letter": "Al menos 1 letra minúscula",
+      "at_least_one_special_character": "Al menos 1 carácter especial (@#%*)",
+      "at_least_six_characters": "Al menos 6 caracteres"
+    }
   },
   "COMPONENTS": {
     "sonner": {

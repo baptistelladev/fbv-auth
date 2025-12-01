@@ -5,13 +5,18 @@ import { useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+/**
+ * @description Disponibiliza Schema e inicializa formulário de criação de conta
+ * @returns Retorna o FormSchema, o formulário e o state.
+ * @author Felipe Baptistella
+ */
 export function useForgotPassword() {
   const locale = useLocale() as LanguageAsLocale;
 
   setZodGlobalLocale(locale);
 
   const formSchema = z.object({
-    email: z.email().nonempty(),
+    email: z.email().nonempty().toLowerCase(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({

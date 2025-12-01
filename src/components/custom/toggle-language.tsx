@@ -1,7 +1,7 @@
 "use client";
 
 import { cn, getFlag } from "@/lib/utils";
-import { LANGUAGES } from "@/shared/mocks/languages";
+import { LANGUAGES } from "@/shared/mocks/languages.mock";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import { Globe } from "lucide-react";
 import Image from "next/image";
@@ -18,8 +18,6 @@ import { LanguageAsLocale, LanguageType } from "@/shared/types/language.type";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Fragment } from "react/jsx-runtime";
-import { useState } from "react";
 
 // INTERFACE
 type Props = {
@@ -36,6 +34,12 @@ export function ToggleLanguageComp({ classNames }: Props) {
   const locale = useLocale() as LanguageAsLocale;
 
   // FUNÇÕES
+
+  /**
+   * @description Atualiza a rota com o locale selecionado.
+   * @param lang locale/lang selecionado.
+   * @author Felipe Baptistella
+   */
   async function handleLangChange(lang: LanguageType) {
     const pathChunks = pathname.split("/");
     pathChunks[1] = lang.value;
@@ -47,6 +51,11 @@ export function ToggleLanguageComp({ classNames }: Props) {
     showToast(lang);
   }
 
+  /**
+   * @description Mostra o toast com o idioma selecionado.
+   * @param lang locale/lang selecionado.
+   * @author Felipe Baptistella
+   */
   function showToast(lang: LanguageType): void {
     toast.message(false, {
       description: `${lang.messageChange} ${

@@ -10,7 +10,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 import { useForgotPassword } from "@/hooks/forms/use-forgot-password-form";
-import { AtSign, CircleAlert, Send, TriangleAlert } from "lucide-react";
+import { AtSign, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -20,6 +20,7 @@ import * as z from "zod";
 import InputErrorComp from "../custom/input-error";
 
 export function ForgotPasswordComp() {
+  // HOOKS CUSTOMIZADOS
   const { form, formSchema, formState } = useForgotPassword();
 
   // TRADUÇÃO
@@ -30,7 +31,6 @@ export function ForgotPasswordComp() {
   const [isRecovering, setIsRecovering] = useState(false);
 
   // FUNÇÕES
-
   /**
    * @description Enviar email para redefinição de senha.
    * @author Felipe Baptistella
@@ -45,7 +45,10 @@ export function ForgotPasswordComp() {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-sm">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="space-y-4 max-w-sm  mb-6"
+    >
       <div className="flex flex-col ">
         <div
           className={`rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ${
@@ -65,7 +68,7 @@ export function ForgotPasswordComp() {
                   }
                 >
                   <InputGroup className="rounded-md border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
-                    <InputGroupAddon>
+                    <InputGroupAddon aria-hidden={true}>
                       <AtSign
                         strokeWidth={1.7}
                         className="size-4 text-neutral-400 group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-700 dark:group-has-[[data-slot=input-group-control]:focus-visible]:text-neutral-100 "

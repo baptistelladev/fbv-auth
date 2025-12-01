@@ -4,7 +4,7 @@ import { Baloo_2, Nunito } from "next/font/google";
 import CustomToasterComp from "@/components/custom/custom-toaster";
 import { routing } from "@/i18n/routing";
 import { getLangAttr } from "@/lib/utils";
-import { LANGUAGES } from "@/shared/mocks/languages";
+import { LANGUAGES } from "@/shared/mocks/languages.mock";
 import { useLocale } from "next-intl";
 import LocaleLayout from "./[locale]/layout";
 import "./globals.css";

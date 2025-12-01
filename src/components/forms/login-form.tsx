@@ -1,7 +1,9 @@
 "use client";
 
+import ForgotPasswordButtonComp from "@/components/custom/forgot-password-button";
+import SignUpButtonComp from "@/components/custom/sign-up-button";
 import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldGroup } from "@/components/ui/field";
+import { Field, FieldGroup } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
@@ -15,6 +17,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useLoginForm } from "@/hooks/forms/use-login-form";
 import { Separator } from "@radix-ui/react-separator";
 import { AtSign, Eye, EyeClosed, LogIn, SquareAsterisk } from "lucide-react";
 import { motion } from "motion/react";
@@ -22,12 +25,10 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 import * as z from "zod";
-import ForgotPasswordButtonComp from "@/components/custom/forgot-password-button";
-import SignUpButtonComp from "@/components/custom/sign-up-button";
-import { useLoginForm } from "@/hooks/forms/use-login-form";
 import InputErrorComp from "../custom/input-error";
 
 export function LoginFormComp() {
+  // HOOKS
   const { form, formSchema, formState } = useLoginForm();
 
   // TRADUÇÃO
@@ -39,8 +40,9 @@ export function LoginFormComp() {
   const [isLogging, setIsLogging] = useState(false);
 
   // FUNÇÕES
+
   /**
-   * @description Alternar visualização da senha.
+   * @description Alterar a visualização da senha entre text/password.
    * @author Felipe Baptistella
    */
   function togglePassword() {
@@ -49,7 +51,7 @@ export function LoginFormComp() {
   }
 
   /**
-   * @description Logar na aplicação.
+   * @description Simular login.
    * @author Felipe Baptistella
    */
   function onSubmit(data: z.infer<typeof formSchema>) {
@@ -63,7 +65,10 @@ export function LoginFormComp() {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-sm">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="space-y-4 max-w-sm  mb-6"
+    >
       <div className="flex flex-col ">
         <div
           className={`rounded-md shadow border-[0.5px] border-neutral-200 dark:border-neutral-700 ${
@@ -83,7 +88,7 @@ export function LoginFormComp() {
                   }
                 >
                   <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
-                    <InputGroupAddon>
+                    <InputGroupAddon aria-hidden={true}>
                       <AtSign
                         strokeWidth={1.7}
                         className="size-4 text-neutral-400"
@@ -129,7 +134,7 @@ export function LoginFormComp() {
               )}
             />
 
-            <Separator className="h-px dark:h-[0.5px] bg-neutral-200 dark:bg-neutral-700" />
+            <Separator className="h-[0.5px] bg-neutral-200 dark:bg-neutral-700" />
 
             <Controller
               name="password"
@@ -143,7 +148,7 @@ export function LoginFormComp() {
                   }
                 >
                   <InputGroup className="rounded-b-md rounded-t-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent!">
-                    <InputGroupAddon>
+                    <InputGroupAddon aria-hidden={true}>
                       <SquareAsterisk
                         strokeWidth={1.5}
                         className="size-4 text-neutral-400"
@@ -187,7 +192,7 @@ export function LoginFormComp() {
                                 : tg("show_password")
                             }
                             disabled={isLogging}
-                            className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1 "
+                            className="rounded-full text-neutral-400 cursor-pointer hover:opacity-50 transition-opacity duration-300 -mr-1 bg-neutral-100 dark:bg-neutral-700/20 dark:hover:bg-neutral-700/60"
                             size="icon-sm"
                             onClick={() => togglePassword()}
                           >
@@ -228,7 +233,7 @@ export function LoginFormComp() {
           title={isLogging ? t("logging_in") : t("login")}
           aria-label={`${t("login")}`}
           disabled={isLogging || !formState.isValid}
-          className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
+          className="mt-6 mb-3 w-auto transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
         >
           <motion.button whileTap={{ scale: 0.95 }}>
             {isLogging ? (

@@ -2,10 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useEffectEvent, useRef, useState } from "react";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "../ui/button";
 
 // INTERFACE
 type Props = {
@@ -14,6 +13,7 @@ type Props = {
 };
 
 export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
+  // HOOKS
   const tg = useTranslations("GENERAL");
 
   const pathname = usePathname().split("/")[2];
