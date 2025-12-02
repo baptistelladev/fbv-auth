@@ -27,6 +27,12 @@
     "terms_label": "Termos e Condições de Uso",
     "terms_text": "Ao criar uma conta no nosso site você automaticamente concorda com os"
   },
+  "RESET_PASSWORD_PAGE": {
+    "page_title": "Redefinição de senha",
+    "page_description": "Redefina sua senha para acessar o site",
+    "section_title": "<b>Redefina</b> sua senha",
+    "section_desc": "Informe uma nova senha e a confirmação"
+  },
   "GENERAL": {
     "show_password": "Mostrar senha",
     "hide_password": "Esconder senha",
@@ -34,6 +40,7 @@
     "language": "Idioma",
     "email": "Email",
     "password": "Senha",
+    "confirmation_password": "Confirmação da senha",
     "choose_language": "Escolha um idioma",
     "redirect_not_authenticated": "Ir para tela de login",
     "redirect_authenticated": "Ir para tela principal",
@@ -51,9 +58,13 @@
       "at_least_one_uppercase_letter": "Pelo menos 1 letra maiúscula",
       "at_least_one_lowercase_letter": "Pelo menos 1 letra minúscula",
       "at_least_one_special_character": "Pelo menos 1 caractere especial (@#%*)",
-      "at_least_six_characters": "Pelo menos 6 caracteres"
+      "at_least_six_characters": "Pelo menos 6 caracteres",
+      "passwords_match": "Senhas coincidem"
     },
-    "close": "Fechar"
+    "close": "Fechar",
+    "redefine": "Redefinir",
+    "redefining": "Redefinindo",
+    "cancel": "Cancelar"
   },
   "COMPONENTS": {
     "sonner": {
@@ -79,7 +90,12 @@
       "account_created": {
         "title": "Criação de conta",
         "description": "Descrição acessibilidade",
-        "content": "Aqui você vai dizer que enviou um link de redefinição de senha para o usuário. Verifique sua caixa de entrada e spam."
+        "content": "Aqui você vai dizer que enviou um link de criação de conta para o usuário e agora ele precisa confirmar o e-mail."
+      },
+      "password_reseted": {
+        "title": "Redefinição de senha",
+        "description": "Descrição acessibilidade",
+        "content": "Aqui você vai dizer que redefiniu a senha, pra fazer o login novamente."
       }
     }
   }

@@ -1,6 +1,6 @@
 export type PasswordRuleType = {
   text: string;
   isValid: boolean;
-  regex: RegExp;
+  regex?: RegExp;
   key: string;
 };

@@ -33,3 +33,14 @@ export const PASSWORD_RULES: PasswordRuleType[] = [
     key: "at_least_six_characters",
   },
 ];
+
+export const PASSWORD_MATCH_CONFIRMATION: PasswordRuleType = {
+  text: "Senhas coincidem",
+  isValid: false,
+  key: "passwords_match",
+};
+
+export const PASSWORD_RULES_W_CONFIRMATION_RULE: PasswordRuleType[] = [
+  ...PASSWORD_RULES,
+  PASSWORD_MATCH_CONFIRMATION,
+];

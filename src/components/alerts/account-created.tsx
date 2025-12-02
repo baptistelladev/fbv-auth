@@ -37,7 +37,7 @@ export default function AccountCreatedComp() {
             />
           </IconFrameComp>
         </div>
-        <DialogTitle className="font-nunito font-bold text-2xl text-center">
+        <DialogTitle className="font-nunito font-bold text-2xl text-center dark:text-neutral-100">
           {tc("account_created.title")}
         </DialogTitle>
         <DialogDescription className="sr-only">
@@ -45,7 +45,7 @@ export default function AccountCreatedComp() {
         </DialogDescription>
       </DialogHeader>
       <div className="flex items-center gap-2 pt-4 pb-6 text-center">
-        <p className="text-sm text-neutral-700 font-light">
+        <p className="text-sm text-neutral-700 font-light dark:text-neutral-300">
           {tc("account_created.content")}
         </p>
       </div>
@@ -53,7 +53,7 @@ export default function AccountCreatedComp() {
         <DialogClose asChild>
           <Button
             type="button"
-            className="text-xs bg-neutral-800 md:m-auto"
+            className="text-xs bg-neutral-800 md:m-auto dark:bg-neutral-200"
             onClick={() => goToLoginPage()}
           >
             {tg("close")}

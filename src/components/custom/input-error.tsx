@@ -1,3 +1,5 @@
+"use client";
+
 import { TriangleAlert } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { InputGroupAddon } from "../ui/input-group";

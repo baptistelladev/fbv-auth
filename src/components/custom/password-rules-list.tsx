@@ -1,15 +1,28 @@
+"use client";
+
 import { PasswordRuleType } from "@/shared/types/password-rules.type";
 import { Check, X } from "lucide-react";
-import React from "react";
+import { useTranslations } from "use-intl";
 
 type Props = {
   passwordRules: PasswordRuleType[];
 };
 
 export default function PasswordRulesListComp({ passwordRules }: Props) {
+  // HOOKS
+  const tg = useTranslations("GENERAL");
+
+  // MOCKS
+  const passwordRulesTranslated = [
+    ...passwordRules.map((rule) => ({
+      ...rule,
+      text: tg(`password_validation.${rule.key}`),
+    })),
+  ];
+
   return (
     <ul className="w-full py-4" aria-hidden={true}>
-      {passwordRules.map((rule) => (
+      {passwordRulesTranslated.map((rule) => (
         <li
           className="text-xs text-neutral-700 dark:text-neutral-100 flex items-center justify-start font-light not-last:mb-1"
           key={rule.text}

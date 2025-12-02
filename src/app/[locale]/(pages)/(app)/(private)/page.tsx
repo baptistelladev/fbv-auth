@@ -1,4 +1,4 @@
-import { AnfitrionLogoComp } from "@/components/custom/anfitrion-logo";
+import { AnfitrionLogoComp } from "@/components/custom/logo";
 
 export default function InicioPage() {
   return (

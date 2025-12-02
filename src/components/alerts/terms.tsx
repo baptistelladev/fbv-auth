@@ -17,7 +17,7 @@ export default function TermsComp() {
   return (
     <div>
       <DialogHeader>
-        <DialogTitle className="font-nunito font-bold text-2xl">
+        <DialogTitle className="font-nunito font-bold text-2xl dark:text-neutral-100">
           {tc("terms.title")}
         </DialogTitle>
         <DialogDescription className="sr-only">
@@ -25,7 +25,7 @@ export default function TermsComp() {
         </DialogDescription>
       </DialogHeader>
       <div className="flex items-center gap-2 pt-4 pb-6">
-        <p className="text-sm text-neutral-700 font-light">
+        <p className="text-sm text-neutral-700 font-light dark:text-neutral-300">
           {tc.rich("terms.content", {
             name: "Felipe Baptistella",
             link: (chunks) => (
@@ -43,7 +43,10 @@ export default function TermsComp() {
       </div>
       <DialogFooter className="sm:justify-start">
         <DialogClose asChild>
-          <Button type="button" className="text-xs bg-neutral-800">
+          <Button
+            type="button"
+            className="text-xs bg-neutral-800 dark:bg-neutral-200"
+          >
             {tg("close")}
           </Button>
         </DialogClose>

@@ -12,7 +12,7 @@ type Props = {
   href?: any;
 };
 
-export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
+export const LogoComp = ({ classNames, href }: Props) => {
   // HOOKS
   const tg = useTranslations("GENERAL");
 
@@ -44,7 +44,7 @@ export const AnfitrionLogoComp = ({ classNames, href }: Props) => {
             classNames
           )}
         >
-          anfitri<span className="text-green-main font-bold">on</span>
+          fbv<span className="text-green-main font-bold">auth</span>
         </span>
       </Link>
     </Button>

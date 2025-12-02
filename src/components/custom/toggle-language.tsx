@@ -121,7 +121,8 @@ export function ToggleLanguageComp({ classNames }: Props) {
                   src={getFlag(lang.value)}
                   alt={""}
                   width={17}
-                  height={11.16}
+                  height={undefined}
+                  style={{ width: "17px", height: "auto" }}
                 />
               }
             </DropdownMenuShortcut>

@@ -20,6 +20,7 @@ import * as z from "zod";
 import InputErrorComp from "../custom/input-error";
 import { Dialog, DialogContent } from "../ui/dialog";
 import ForgotPasswordAlertComp from "../alerts/forgot-password";
+import { blockSpace } from "@/lib/utils";
 
 export function ForgotPasswordComp() {
   // HOOKS CUSTOMIZADOS
@@ -46,7 +47,7 @@ export function ForgotPasswordComp() {
       setIsRecovering(false);
       form.reset();
       setShowModalLinkHasSent(true);
-    }, 312312312);
+    }, 2000);
   }
 
   return (
@@ -89,6 +90,7 @@ export function ForgotPasswordComp() {
                       <InputGroupInput
                         className="text-sm lowercase"
                         {...field}
+                        onKeyDown={blockSpace}
                         aria-required={true}
                         id={field.name}
                         placeholder={`${tg("input_email_placeholder")}`}
@@ -171,7 +173,10 @@ export function ForgotPasswordComp() {
         open={showModalLinkHasSent}
         onOpenChange={(val) => setShowModalLinkHasSent(val)}
       >
-        <DialogContent>
+        <DialogContent
+          className="dark:bg-neutral-900 border-[0.5px] border-neutral-200 dark:border-neutral-700"
+          forceMount={true}
+        >
           <ForgotPasswordAlertComp />
         </DialogContent>
       </Dialog>

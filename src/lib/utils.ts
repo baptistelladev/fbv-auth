@@ -43,7 +43,7 @@ export const validatePassword = (
 ) => {
   return rules.map((rule) => ({
     ...rule,
-    isValid: rule.regex.test(password),
+    isValid: rule.regex?.test(password)!,
   }));
 };
 
@@ -61,3 +61,21 @@ export function resetPasswordRulesState(
     prev.map((rule) => ({ ...rule, isValid: false }))
   );
 }
+
+/**
+ * @description Previne que o usuário digite " ".
+ * @param e Evento do teclado.
+ * @author Felipe Baptistella
+ */
+export const blockSpace = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  if (e.key === " ") e.preventDefault();
+};
+
+/**
+ * @description Limpa espaços e . do nome. Se a pessoa burlar o " " 2x adiciona . no final.
+ * @param e Evento do teclado.
+ * @author Felipe Baptistella
+ */
+export const clearFirstName = (value: string) => {
+  return value.replace(/[\s.]+/g, "");
+};

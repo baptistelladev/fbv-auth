@@ -17,7 +17,12 @@ export function useSignUpForm() {
   setZodGlobalLocale(locale);
 
   const formSchema = z.object({
-    first_name: z.string().min(3),
+    first_name: z
+      .string()
+      .min(3)
+      .transform((value) => {
+        return value.split(" ")[0].trim();
+      }),
     email: z.email().nonempty().toLowerCase(),
     accept_terms: z.refine((value) => value),
     password: z

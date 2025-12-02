@@ -28,7 +28,7 @@ export default function CriarContaPage() {
         <IconFrameComp>
           <UserRoundPlus
             strokeWidth={1.2}
-            className="text-muted-foreground size-5 md:size-6 -mt-1 -mr-1"
+            className="text-muted-foreground size-5 md:size-6 "
           />
         </IconFrameComp>
 

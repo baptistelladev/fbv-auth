@@ -179,7 +179,7 @@ button,
 
 /* FOCUS CUSTOMIZADO NOS INPUTS: BORDER */
 .focus-anfitrion-effect:has(input:focus-visible),
-button[role="checkbox"] {
+button[role="checkbox"]:focus-visible {
   @apply border-focus! border! shadow-[0_0_0_4px_rgba(234,100,217,0.1)]!;
 }
 

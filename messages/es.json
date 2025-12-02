@@ -27,6 +27,12 @@
     "terms_label": "Términos y Condiciones de Uso",
     "terms_text": "Al crear una cuenta en nuestro sitio web aceptas automáticamente los"
   },
+  "RESET_PASSWORD_PAGE": {
+    "page_title": "Restablecimiento de contraseña",
+    "page_description": "Restablece tu contraseña para acceder al sitio",
+    "section_title": "<b>Restablece</b> tu contraseña",
+    "section_desc": "Ingresa una nueva contraseña y su confirmación"
+  },
   "GENERAL": {
     "show_password": "Mostrar contraseña",
     "hide_password": "Ocultar contraseña",
@@ -34,6 +40,7 @@
     "language": "Idioma",
     "email": "Correo electrónico",
     "password": "Contraseña",
+    "confirmation_password": "Confirmación de la contraseña",
     "choose_language": "Elige un idioma",
     "redirect_not_authenticated": "Ir a la pantalla de inicio de sesión",
     "redirect_authenticated": "Ir a la pantalla principal",
@@ -51,9 +58,13 @@
       "at_least_one_uppercase_letter": "Al menos 1 letra mayúscula",
       "at_least_one_lowercase_letter": "Al menos 1 letra minúscula",
       "at_least_one_special_character": "Al menos 1 carácter especial (@#%*)",
-      "at_least_six_characters": "Al menos 6 caracteres"
+      "at_least_six_characters": "Al menos 6 caracteres",
+      "passwords_match": "Las contraseñas coinciden"
     },
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "redefine": "Redefinir",
+    "redefining": "Redefiniendo",
+    "cancel": "Cancelar"
   },
   "COMPONENTS": {
     "sonner": {
@@ -68,19 +79,24 @@
     },
     "dialogs": {
       "terms": {
-        "title": "A partir de aquí depende de ti",
+        "title": "A partir de aquí, depende de ti",
         "description": "Descripción de accesibilidad",
         "content": "Hola @dev. Mi nombre es <link>{name}</link>, soy desarrollador Front-end desde hace más de 7 años y creé esta plantilla de autenticación como una forma de retribuir a la comunidad dev."
       },
       "forgot_password": {
         "title": "Recuperación de cuenta",
         "description": "Descripción de accesibilidad",
-        "content": "Aquí indicarás que enviaste un enlace de restablecimiento de contraseña al usuario. Revisa tu bandeja de entrada y carpeta de spam."
+        "content": "Aquí vas a decir que enviaste un enlace de restablecimiento de contraseña al usuario. Revisa tu bandeja de entrada y la carpeta de spam."
       },
       "account_created": {
         "title": "Creación de cuenta",
         "description": "Descripción de accesibilidad",
-        "content": "Aquí indicarás que enviaste un enlace de restablecimiento de contraseña al usuario. Revisa tu bandeja de entrada y carpeta de spam."
+        "content": "Aquí vas a decir que enviaste un enlace de creación de cuenta al usuario y que ahora necesita confirmar su correo electrónico."
+      },
+      "password_reseted": {
+        "title": "Restablecimiento de contraseña",
+        "description": "Descripción de accesibilidad",
+        "content": "Aquí vas a decir que la contraseña fue restablecida, para que el usuario pueda iniciar sesión nuevamente."
       }
     }
   }

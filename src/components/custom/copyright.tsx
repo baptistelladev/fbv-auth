@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { ANFITRION_CFG } from "@/shared/mocks/anfitrion.mock";
 import { getYear } from "date-fns";

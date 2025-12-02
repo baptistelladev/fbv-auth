@@ -16,7 +16,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useSignUpForm } from "@/hooks/forms/use-sign-up-form";
-import { resetPasswordRulesState, validatePassword } from "@/lib/utils";
+import {
+  blockSpace,
+  clearFirstName,
+  resetPasswordRulesState,
+  validatePassword,
+} from "@/lib/utils";
 import { PASSWORD_RULES } from "@/shared/mocks/password-rules.mock";
 import { Separator } from "@radix-ui/react-separator";
 import {
@@ -51,12 +56,7 @@ export function SignUpFormComp() {
   const tg = useTranslations("GENERAL");
 
   // MOCKS
-  const MOCK_PASSWORD_RULES = [
-    ...PASSWORD_RULES.map((rule) => ({
-      ...rule,
-      text: tg(`password_validation.${rule.key}`),
-    })),
-  ];
+  const MOCK_PASSWORD_RULES = [...PASSWORD_RULES];
 
   // STATES
   const [showPasswordField, setShowPasswordField] = useState(false);
@@ -116,6 +116,24 @@ export function SignUpFormComp() {
     setPasswordRules(passwordRulesUpdated);
   }
 
+  /**
+   * @description Formata o nome da pessoa.
+   * Recebe o nome inputado e torna a primeira letra uppercase e as demais lowercase.
+   * @param first_name Nome.
+   * @author Felipe Baptistella
+   */
+  function handleFirstName(first_name: string) {
+    let firstNameNormalized = clearFirstName(first_name);
+
+    if (!firstNameNormalized.length) return "";
+
+    firstNameNormalized =
+      firstNameNormalized.charAt(0).toUpperCase() +
+      firstNameNormalized.slice(1).toLocaleLowerCase();
+
+    return firstNameNormalized;
+  }
+
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
@@ -139,7 +157,7 @@ export function SignUpFormComp() {
                     fieldState.isDirty
                   }
                 >
-                  <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
+                  <InputGroup className="rounded-t-md rounded-b-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent">
                     <InputGroupAddon aria-hidden={true}>
                       <Fingerprint
                         strokeWidth={1.7}
@@ -158,6 +176,11 @@ export function SignUpFormComp() {
                       <InputGroupInput
                         className="text-sm"
                         {...field}
+                        onKeyDown={blockSpace}
+                        onChange={(e) => {
+                          const firstName = handleFirstName(e.target.value);
+                          field.onChange(firstName);
+                        }}
                         aria-required={true}
                         id={field.name}
                         placeholder={`Ex: ${tg(
@@ -208,7 +231,7 @@ export function SignUpFormComp() {
                     fieldState.isDirty
                   }
                 >
-                  <InputGroup className="rounded-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent! ">
+                  <InputGroup className="rounded-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent">
                     <InputGroupAddon aria-hidden={true}>
                       <AtSign
                         strokeWidth={1.7}
@@ -227,6 +250,7 @@ export function SignUpFormComp() {
                       <InputGroupInput
                         className="text-sm lowercase"
                         {...field}
+                        onKeyDown={blockSpace}
                         aria-required={true}
                         id={field.name}
                         placeholder={`${tg("input_email_placeholder")}`}
@@ -275,7 +299,7 @@ export function SignUpFormComp() {
                     fieldState.isDirty
                   }
                 >
-                  <InputGroup className="rounded-b-md rounded-t-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent!">
+                  <InputGroup className="rounded-b-md rounded-t-none border-transparent h-13  has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-100/60 group dark:has-[[data-slot=input-group-control]:focus-visible]:bg-neutral-700/50  focus-anfitrion-effect has-[[data-slot][aria-invalid=true]]:border-transparent">
                     <InputGroupAddon aria-hidden={true}>
                       <SquareAsterisk
                         strokeWidth={1.5}
@@ -293,6 +317,7 @@ export function SignUpFormComp() {
 
                       <InputGroupInput
                         {...field}
+                        onKeyDown={blockSpace}
                         onChange={(e) => {
                           field.onChange(e);
                           checkPassword(e.target.value);
@@ -381,6 +406,7 @@ export function SignUpFormComp() {
               >
                 <div className="flex items-start gap-3">
                   <Checkbox
+                    autoFocus={false}
                     checked={field.value === true}
                     onCheckedChange={(checked) =>
                       field.onChange(checked === true)
@@ -393,28 +419,35 @@ export function SignUpFormComp() {
                       fieldState.isTouched &&
                       fieldState.isDirty
                     }
-                    className="bg-white aria-checked:bg-green-main! aria-checked:border-green-anfitrion! data-[state=checked]:text-white!"
+                    className="bg-white aria-checked:bg-green-main! aria-checked:border-green-main! data-[state=checked]:text-white!"
                   />
 
-                  <div className="grid gap-2">
-                    <Label htmlFor={field.name} className="text-xs">
+                  <div className="grid">
+                    <Label
+                      htmlFor={field.name}
+                      className="text-xs text-neutral-700 dark:text-neutral-200"
+                    >
                       {t("terms_label")}
                     </Label>
 
-                    <p className="text-muted-foreground text-xs dark:text-neutral-100">
+                    <p className="text-muted-foreground text-xs dark:text-neutral-400 mt-3 text-balance font-light">
                       {t("terms_text")}
-                      <Dialog>
-                        <DialogTrigger
-                          className="text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer lower-case hover:opacity-50 transition-opacity duration-300"
-                          title={t("terms_label")}
-                        >
-                          {t("terms_label")}
-                        </DialogTrigger>
-                        <DialogContent>
-                          <TermsComp />
-                        </DialogContent>
-                      </Dialog>
                     </p>
+
+                    <Dialog>
+                      <DialogTrigger
+                        className="text-green-main group-hover:text-green-dark-main underline underline-offset-3 cursor-pointer lower-case hover:opacity-50 transition-opacity duration-300 text-left text-xs min-h-0 h-auto"
+                        title={t("terms_label")}
+                      >
+                        {t("terms_label")}
+                      </DialogTrigger>
+                      <DialogContent
+                        forceMount={true}
+                        className="dark:bg-neutral-900 border-[0.5px] border-neutral-200 dark:border-neutral-700"
+                      >
+                        <TermsComp />
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </Field>
@@ -428,7 +461,7 @@ export function SignUpFormComp() {
           title={isSending ? tg("registering") : tg("register")}
           aria-label={`${tg("register")}`}
           disabled={isSending || !formState.isValid}
-          className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs "
+          className="mt-6 mb-3 w-full transition-none rounded-full cursor-pointer dark:text-white dark:shadow-none main-btn font-normal text-xs"
         >
           <motion.button whileTap={{ scale: 0.95 }}>
             {isSending ? (
@@ -467,7 +500,10 @@ export function SignUpFormComp() {
         open={showModalAccountCreated}
         onOpenChange={(val) => setShowModalAccountCreated(val)}
       >
-        <DialogContent>
+        <DialogContent
+          className="dark:bg-neutral-900 border-[0.5px] border-neutral-200 dark:border-neutral-700"
+          forceMount={true}
+        >
           <AccountCreatedComp />
         </DialogContent>
       </Dialog>

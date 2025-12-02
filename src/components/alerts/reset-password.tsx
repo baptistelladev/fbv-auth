@@ -1,4 +1,4 @@
-import { MailSearch } from "lucide-react";
+import { Asterisk, AsteriskSquare, MailSearch } from "lucide-react";
 import Link from "next/link";
 import { IconFrameComp } from "../custom/icon-frame";
 import { Button } from "../ui/button";
@@ -13,7 +13,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
-export default function ForgotPasswordAlertComp() {
+export default function ResetPasswordAlertComp() {
   // HOOKS
   const tc = useTranslations("COMPONENTS.dialogs");
   const tg = useTranslations("GENERAL");
@@ -32,22 +32,22 @@ export default function ForgotPasswordAlertComp() {
       <DialogHeader>
         <div className="flex justify-center items-center">
           <IconFrameComp>
-            <MailSearch
+            <AsteriskSquare
               strokeWidth={1.2}
-              className="text-muted-foreground size-5 md:size-6"
+              className="text-muted-foreground size-5 md:size-6 "
             />
           </IconFrameComp>
         </div>
-        <DialogTitle className="font-nunito font-bold text-2xl text-center dark:text-neutral-100">
-          {tc("forgot_password.title")}
+        <DialogTitle className="font-nunito font-bold text-2xl text-center">
+          {tc("password_reseted.title")}
         </DialogTitle>
         <DialogDescription className="sr-only">
-          {tc("forgot_password.description")}
+          {tc("password_reseted.description")}
         </DialogDescription>
       </DialogHeader>
       <div className="flex items-center gap-2 pt-4 pb-6 text-center">
-        <p className="text-sm text-neutral-700 font-light dark:text-neutral-300">
-          {tc("forgot_password.content")}
+        <p className="text-sm text-neutral-700 font-light">
+          {tc("password_reseted.content")}
         </p>
       </div>
       <DialogFooter className="sm:justify-start">
