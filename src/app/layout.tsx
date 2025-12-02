@@ -9,6 +9,7 @@ import { useLocale } from "next-intl";
 import LocaleLayout from "./[locale]/layout";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 type Props = {
   children: React.ReactNode;
@@ -46,7 +47,10 @@ export default function RootLayout({ children }: Props) {
       <body className={`${nunito.variable} ${baloo2.variable}`}>
         <LocaleLayout>{children}</LocaleLayout>
         <CustomToasterComp />
+
+        {/* VERCEL */}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
