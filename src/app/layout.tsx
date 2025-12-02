@@ -8,6 +8,7 @@ import { LANGUAGES } from "@/shared/mocks/languages.mock";
 import { useLocale } from "next-intl";
 import LocaleLayout from "./[locale]/layout";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "anfitrion",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: Props) {
       <body className={`${nunito.variable} ${baloo2.variable}`}>
         <LocaleLayout>{children}</LocaleLayout>
         <CustomToasterComp />
+        <SpeedInsights />
       </body>
     </html>
   );
